@@ -1,5 +1,6 @@
 package org.recognition.fingerprint;
 
+import org.recognition.io.AbstractReader;
 import org.recognition.utils.Consts;
 import org.recognition.utils.FixedSizeTreeSet;
 import org.apache.commons.lang3.ArrayUtils;
@@ -11,11 +12,11 @@ import java.util.*;
 public class Fingerprint {
     private List<Peak> peakList;
 
-    public Fingerprint(float[] data) {
+    public Fingerprint(AbstractReader reader) {
         peakList = new ArrayList<>();
 
         //Get the raw time-domain data from the wav and generate its org.recognition.spectrogram
-        Spectrogram spectrogram = new Spectrogram(data);
+        Spectrogram spectrogram = new Spectrogram(reader.getData());
         Set<Peak> tmp = new FixedSizeTreeSet<>(Consts.NPEAKS, true);
 
         //for each band

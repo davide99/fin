@@ -36,12 +36,12 @@ public class Links extends ArrayList<Links.Link> {
         private String hash;
         private int time;
 
-        Link(Peak start, Peak end) {
-            int deltaTime = end.getTime() - start.getTime();
-            int deltaFreq = end.getFreq() - start.getFreq();
+        Link(Peak address, Peak peak) {
+            int deltaTime = peak.getTime() - address.getTime();
+            int deltaFreq = peak.getFreq() - address.getFreq();
 
-            hash = DigestUtils.sha1Hex(deltaTime + "" + deltaFreq + "" + start.getFreq());
-            time = start.getTime();
+            hash = DigestUtils.sha1Hex(deltaTime + "" + deltaFreq + "" + address.getFreq());
+            time = address.getTime();
         }
 
         public String getHash() {

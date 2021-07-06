@@ -9,8 +9,10 @@
 \usepackage{pgfplots}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
+\usepackage{lscape}
 \usetikzlibrary{patterns}
 \usetikzlibrary{positioning,fit}
+\usepackage{pgf-umlcd}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
@@ -6512,6 +6514,764 @@ Descending sort the tuples according to the count field
 
 \begin_layout Itemize
 The top most tuple obtained contains the id of the most likely matching
+\end_layout
+
+\begin_layout Chapter
+Java implemetation
+\end_layout
+
+\begin_layout Standard
+In the next sections the Java implementation of the algorithm will be discussed.
+ Some of the most well-known part of the implementation will not be covered
+ here, since they are standard pieces of code.
+ Here it is the class diagram of the implementation:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+moveright  2in  
+\backslash
+hbox{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+scalebox{.75}{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{package}{io}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{interface}[text width=3.5 cm]{AbstractReader}{-4,-3}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getData () : float[]}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{interface}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=4.5 cm]{MicReader}{-4,-0.5}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+implement{AbstractReader}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-seconds : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+MicReader (seconds: int)}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=5.5 cm]{WavReader}{2,-0.5}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+implement{AbstractReader}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-title : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-fileName : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-data : float[]}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+WavReader (fileName : String)}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getData () : float[]}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getTitle () : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getFileName () : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{package}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{package}{database}	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=5.5 cm]{DB}{9,-1.5}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+DB ()}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+insert (file : WavReader) : void}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+searchId (list : List<Link>) : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getSongById (id : int) : Song}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{package}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{package}{model}	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=4.5 cm]{Song}{15.5,-2}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-id : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-title : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+DB (id : int, title: String)}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{package}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{package}{spectrogram}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=6 cm]{Spectrogram}{-3,-9}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-winFFT : List<Complex[]>}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Spectrogram (data : float[])}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getWinFFT () : List<Complex[]>}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=8 cm]{Window}{-3,-12}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-window : float[]}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Window ()}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+extractWindow (data : float[], pos : int) : float[]}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{package}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{package}{fingerprint}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=6.5 cm]{Fingerprint}{6,-7}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-peakList : List<Peak>}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Fingerprint (reader : AbstractReader)}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getPeakList() : List<Peak>}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=7 cm]{Peak}{6,-11}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-freq : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-power : float}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-time : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Peak (freq : int, power : float, time : int)}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getFreq() : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getTime() : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{-getBand(intFreq : int) : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+compareBand(p : Peak) : boolean}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=5.5 cm]{Links}{13,-7}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-peakList : List<Peak>}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Links (peakList : List<Peak>)}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=6 cm]{Link}{16,-9.5}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-hash : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-time : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+Link (address : Peak, peak : Peak)}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getHash() : String}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getTime() : int}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{class}[text width=9 cm]{PeaksFinder}{15,-13}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+attribute{-peaks : Set<Peak>}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+PeaksFinder (data : Complex[], band : int, time : int)}
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+operation{+getPeaks() : Set<Peak>}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{class}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{package}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{DB}{}{}{WavReader}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{DB}{}{}{Song}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Spectrogram}{}{}{Window}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Fingerprint}{}{}{AbstractReader}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Fingerprint}{}{}{Spectrogram}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Fingerprint}{}{}{Peak}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{DB}{}{}{Links}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Links}{}{}{Fingerprint}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Links}{}{}{Link}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{Fingerprint}{}{}{PeaksFinder}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+unidirectionalAssociation{PeaksFinder}{}{}{Peak}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+}}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

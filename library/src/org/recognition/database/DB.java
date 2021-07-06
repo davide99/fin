@@ -46,7 +46,7 @@ public class DB {
             //Insert fingerprints
             StringBuilder buf = new StringBuilder("INSERT INTO musiclibrary.hashtable (hash, songId, time) VALUES");
 
-            Fingerprint fingerprint = new Fingerprint(file.getData());
+            Fingerprint fingerprint = new Fingerprint(file);
             Links linkList = new Links(fingerprint.getPeakList());
 
             //Key is the hash, value is the time

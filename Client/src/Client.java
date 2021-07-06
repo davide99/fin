@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import okhttp3.*;
 import org.recognition.fingerprint.Fingerprint;
 import org.recognition.fingerprint.Links;
+import org.recognition.io.AbstractReader;
 import org.recognition.io.MicReader;
 import org.recognition.io.WavReader;
 import org.recognition.model.Song;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Client {
-    private Client(float[] data) {
+    private Client(AbstractReader reader) {
         try {
             Gson gson = new Gson();
             OkHttpClient client = new OkHttpClient.Builder()
@@ -19,7 +20,7 @@ public class Client {
                     .writeTimeout(1, TimeUnit.MINUTES)
                     .build();
 
-            List<Links.Link> list = new Links(new Fingerprint(data).getPeakList());
+            List<Links.Link> list = new Links(new Fingerprint(reader).getPeakList());
 
             FormBody.Builder formBuilder = new FormBody.Builder()
                     .add("links", gson.toJson(list, list.getClass()));
@@ -42,12 +43,12 @@ public class Client {
 
 
     public static void main(String[] args) throws InterruptedException {
-        /*MicReader mic = new MicReader(5);
+        MicReader mic = new MicReader(5);
         mic.start();
         mic.join();
-        new Client(mic.getData());*/
+        new Client(mic);
 
-        WavReader wav = new WavReader("/home/davide/Scrivania/out.wav");
-        new Client(wav.getData());
+        //WavReader wav = new WavReader("/home/davide/Scrivania/out.wav");
+        //new Client(wav.getData());
     }
 }

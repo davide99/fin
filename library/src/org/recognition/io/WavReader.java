@@ -9,7 +9,7 @@ import javax.sound.sampled.AudioSystem;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-public class WavReader {
+public class WavReader implements AbstractReader{
     private String title, fileName;
     private float[] data;
 

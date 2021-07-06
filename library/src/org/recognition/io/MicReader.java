@@ -7,7 +7,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import javax.sound.sampled.*;
 
-public class MicReader extends Thread {
+public class MicReader extends Thread implements AbstractReader{
     private boolean stopped;
     private TargetDataLine line;
     private int seconds;

@@ -6623,7 +6623,7 @@ begin{interface}[text width=3.5 cm]{AbstractReader}{-4,-3}
 
 			
 \backslash
-operation{+getData () : float[]}
+operation{~getData () : float[]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -6924,14 +6924,14 @@ attribute{-window : float[]}
 
 			
 \backslash
-operation{+Window ()}
+operation{~Window ()}
 \end_layout
 
 \begin_layout Plain Layout
 
 			
 \backslash
-operation{+extractWindow (data : float[], pos : int) : float[]}
+operation{~extractWindow (data : float[], pos : int) : float[]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7026,21 +7026,21 @@ attribute{-time : int}
 
 			
 \backslash
-operation{+Peak (freq : int, power : float, time : int)}
+operation{~Peak (freq : int, power : float, time : int)}
 \end_layout
 
 \begin_layout Plain Layout
 
 			
 \backslash
-operation{+getFreq() : int}
+operation{~getFreq() : int}
 \end_layout
 
 \begin_layout Plain Layout
 
 			
 \backslash
-operation{+getTime() : int}
+operation{~getTime() : int}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7117,7 +7117,7 @@ attribute{-time : int}
 
 			
 \backslash
-operation{+Link (address : Peak, peak : Peak)}
+operation{~Link (address : Peak, peak : Peak)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7159,14 +7159,14 @@ attribute{-peaks : Set<Peak>}
 
 			
 \backslash
-operation{+PeaksFinder (data : Complex[], band : int, time : int)}
+operation{~PeaksFinder (data : Complex[], band : int, time : int)}
 \end_layout
 
 \begin_layout Plain Layout
 
 			
 \backslash
-operation{+getPeaks() : Set<Peak>}
+operation{~getPeaks() : Set<Peak>}
 \end_layout
 
 \begin_layout Plain Layout

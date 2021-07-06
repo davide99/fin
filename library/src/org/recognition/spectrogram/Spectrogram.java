@@ -32,11 +32,11 @@ public class Spectrogram {
             winFFT.add(out);
         }
 
-        //Calc time
-        for (int i = 0; i < Consts.freqs.length; i++)
-            Consts.freqs[i] = Consts.SAMPLE_RATE * i / Consts.freqs.length;
-
         //Calc freq
+        for (int i = 0; i < Consts.freqs.length; i++)
+            Consts.freqs[i] = Consts.SAMPLE_RATE / 2 * i / Consts.freqs.length;
+
+        //Calc time
         for (int i = 0; i < Consts.times.length; i++)
             Consts.times[i] = stepSize * i / Consts.SAMPLE_RATE;
 

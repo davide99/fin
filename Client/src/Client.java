@@ -3,6 +3,7 @@ import okhttp3.*;
 import org.recognition.fingerprint.Fingerprint;
 import org.recognition.fingerprint.Links;
 import org.recognition.io.MicReader;
+import org.recognition.io.WavReader;
 import org.recognition.model.Song;
 
 import java.util.List;
@@ -41,9 +42,12 @@ public class Client {
 
 
     public static void main(String[] args) throws InterruptedException {
-        MicReader mic = new MicReader(5);
+        /*MicReader mic = new MicReader(5);
         mic.start();
         mic.join();
-        new Client(mic.getData());
+        new Client(mic.getData());*/
+
+        WavReader wav = new WavReader("/home/davide/Scrivania/out.wav");
+        new Client(wav.getData());
     }
 }

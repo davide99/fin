@@ -4,9 +4,9 @@ import java.util.TreeSet;
 
 /*
  * The class represents a sorted fixed-length set.
- * When it is initialized the length and the comparator
+ * When it is initialized the length and the sorting order
  * has to be specified. The ascSorted parameter tells
- * the class what to do when an exceeding element is added:
+ * the class what to do when an exceeding element is being added:
  * the set is sorted, but the right-most or the left-most
  * element has to be removed.
  *
@@ -25,7 +25,7 @@ public class FixedSizeTreeSet<T> extends TreeSet<T> {
      *
      * @param size      The size of the set
      * @param ascSorted Tells if the Comparable interface sorts
-     *                  element ascending or descending
+     *                  elements ascending or descending
      */
     public FixedSizeTreeSet(int size, boolean ascSorted) {
         this.size = size;

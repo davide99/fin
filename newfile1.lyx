@@ -4597,7 +4597,7 @@ Each color is a band
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $C=12$
+\begin_inset Formula $C=4$
 \end_inset
 
 
@@ -4658,7 +4658,7 @@ axisdefaultheight,
 
 \begin_layout Plain Layout
 
-		ylabel = Frequency,
+		ylabel = Frequency $(Hz)$,
 \end_layout
 
 \begin_layout Plain Layout
@@ -4849,7 +4849,7 @@ name "fig:Spectrum-division"
 
 \end_inset
 
-Spectrum division
+Spectrogram division
 \end_layout
 
 \end_inset
@@ -4879,8 +4879,15 @@ In the actual algorithm
 \end_layout
 
 \begin_layout Standard
-For each cell the algorithm finds and stores the three most powerful frequencies
- in a list.
+For each cell the algorithm finds and stores the 3 most powerful frequencies
+ in a list (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Three-points-per"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -4896,10 +4903,6 @@ status open
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
 begin{tikzpicture}
@@ -4907,185 +4910,279 @@ begin{tikzpicture}
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
 begin{axis}[
 \end_layout
 
 \begin_layout Plain Layout
 
-	grid=major,
+		grid=major,
 \end_layout
 
 \begin_layout Plain Layout
 
-	width=
+		width=
 \backslash
 textwidth,
 \end_layout
 
 \begin_layout Plain Layout
 
-	height=
+		height=
 \backslash
 axisdefaultheight,
 \end_layout
 
 \begin_layout Plain Layout
 
-	xlabel = Time $(s)$,
+		xlabel = Time $(s)$,
 \end_layout
 
 \begin_layout Plain Layout
 
-	ylabel = Frequency,
+		ylabel = Frequency $(Hz)$,
 \end_layout
 
 \begin_layout Plain Layout
 
-	xmin = 0, xmax = 130,
+		xmin = 0, xmax = 13,
 \end_layout
 
 \begin_layout Plain Layout
 
-	ymin = 0, ymax = 4000,
+		ymin = 0, ymax = 4000,
 \end_layout
 
 \begin_layout Plain Layout
 
-]
+	]
 \end_layout
 
 \begin_layout Plain Layout
 
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-draw[pattern=north west lines, pattern color=blue, line width=1pt] (0,00)
- rectangle (40,1000);     	
-\backslash
-draw[pattern=north east lines, pattern color=blue, line width=1pt] (40,00)
- rectangle (80,1000);     	
-\backslash
-draw[pattern=north west lines, pattern color=blue, line width=1pt] (80,00)
- rectangle (120,1000);
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-draw[pattern=north east lines, pattern color=green, line width=1pt] (0,1000)
- rectangle (40,2000);     	
-\backslash
-draw[pattern=north west lines, pattern color=green, line width=1pt] (40,1000)
- rectangle (80,2000);     	
-\backslash
-draw[pattern=north east lines, pattern color=green, line width=1pt] (80,1000)
- rectangle (120,2000); %
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-draw[pattern=north west lines, pattern color=red, line width=1pt] (0,2000)
- rectangle (40,3000);     	
-\backslash
-draw[pattern=north east lines, pattern color=red, line width=1pt] (40,2000)
- rectangle (80,3000);     	
-\backslash
-draw[pattern=north west lines, pattern color=red, line width=1pt] (80,2000)
- rectangle (120,3000);
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-draw[pattern=north east lines, pattern color=orange, line width=1pt] (0,3000)
- rectangle (40,4000);     	
-\backslash
-draw[pattern=north west lines, pattern color=orange, line width=1pt] (40,3000)
- rectangle (80,4000);     	
-\backslash
-draw[pattern=north east lines, pattern color=orange, line width=1pt] (80,3000)
- rectangle (120,4000);     
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-pgfplotsinvokeforeach{1,...,12}{   
+		
 \end_layout
 
 \begin_layout Plain Layout
 
 		
 \backslash
-addplot[scatter,clip=true, clip marker paths=true,
+draw[blue, line width=1pt] (0,0) rectangle (40,100);
 \end_layout
 
 \begin_layout Plain Layout
 
-		    only marks, mark=*, samples=100,point meta=int(#1)
-\end_layout
-
-\begin_layout Plain Layout
-
-	    ]({20+40*
+		
 \backslash
-X+20*rand},{-500+1000*
+draw[blue, line width=1pt] (40,0) rectangle (80,100);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-Y+500*rand});
+draw[blue, line width=1pt] (80,0) rectangle (120,100);
 \end_layout
 
 \begin_layout Plain Layout
 
-	}
 \end_layout
 
 \begin_layout Plain Layout
 
+		
+\backslash
+draw[green, line width=1pt] (0,100) rectangle (40,200);
+\end_layout
 
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[green, line width=1pt] (40,100) rectangle (80,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[green, line width=1pt] (80,100) rectangle (120,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[red, line width=1pt] (0,200) rectangle (40,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[red, line width=1pt] (40,200) rectangle (80,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[red, line width=1pt] (80,200) rectangle (120,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[orange, line width=1pt] (0,300) rectangle (40,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[orange, line width=1pt] (40,300) rectangle (80,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[orange, line width=1pt] (80,300) rectangle (120,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 0.745560224337 , 378.5992651
+97 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 3.35149848633 , 885.69642912
+8 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 1.36552968092 , 687.79506248
+ ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.73052621593 , 1521.618562
+76 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.24021149438 , 1286.762539
+77 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.31025446998 , 1759.585072
+66 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 0.367038182557 , 2640.0077863
+8 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.60223704132 , 2543.51959691
+ ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 3.29030455474 , 2857.42356211
+ ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 3.06012887649 , 3859.57073
+579 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 1.04281482521 , 3310.98256
+132 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 0.342092598793 ,
+ 3187.00295803 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 6.13965840628 , 346.37314184
+4 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 6.18220033666 , 151.14467838
+3 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 5.10152863505 , 640.55570001
+8 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.25598325224 , 1797.769092
+61 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 7.08091233708 , 1668.626795
+36 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 5.30064456137 , 1131.850638
+39 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.2544573697 , 2751.61392809
+ ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.8872104256 , 2267.19959314
+ ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.45001350539 , 2289.19953153
+ ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.64148867695 , 3139.99246
+694 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.80868333293 , 3160.84633
+384 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 4.68927142292 , 3263.16366
+007 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.50986878705 , 653.82012721
+1 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.94884609281 , 539.46336189
+3 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.44637953657 , 707.94351178
+6 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.49315824083 , 1563.597638
+99 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.74759745215 , 1888.112335
+31 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 10.7844077137 , 1477.871231
+18 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.899479235 , 2856.56308609
+ ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 9.50730112412 , 2796.10602412
+ ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 11.6806723738 , 2173.69277417
+ ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.28333255686 , 3800.01058
+487 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.87529616782 , 3162.85741
+608 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.5805497799 , 3704.10829
+642 ) }; 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \backslash
 end{axis}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-draw[decoration={brace,mirror,raise=15pt},decorate]   (0,0) -- node[below=16pt]
- {
-\backslash
-textbf{C}} (3.2,0); 
-\backslash
-draw[decoration={brace,mirror},decorate]   (10.8,0) -- node[xshift=10pt]
- {
-\backslash
-rotatebox{-90}{
-\backslash
-textbf{band}}} (10.8,1.4);
 \end_layout
 
 \begin_layout Plain Layout
@@ -5106,11 +5203,11 @@ end{tikzpicture}
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Spectrum-division-1"
+name "fig:Three-points-per"
 
 \end_inset
 
-Spectrum division
+Three points per cell spectrogram
 \end_layout
 
 \end_inset
@@ -5143,7 +5240,7 @@ Instead of comparing each point one by one, the idea is to look for multiple
 links
 \series default
 , and it represents a relationship between a point and some others.
- In order to be sure that both the record and the full song will generate
+ In order to be sure that both the recording and the full song will generate
  the same links, some rules must be defined:
 \end_layout
 
@@ -5162,7 +5259,7 @@ So, given a point
 \begin_inset Formula $\alpha$
 \end_inset
 
- and an initially empty group of points A, the algorithm will put in A all
+ and an initially empty set of points A, the algorithm will put in A all
  the other points whose window difference compared to the point 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -5189,13 +5286,20 @@ For each point belonging to A a
 \series bold
 link 
 \series default
-is computed and added to a list.
+is computed and added to a list (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Links-creation"
+
+\end_inset
+
+).
  The link structure is the following:
 \end_layout
 
 \begin_layout Standard
 \noindent
-\begin_inset Formula $link.hash=SHA1((\alpha.window-\beta.window)+(\alpha.frequency-b.frequency)+\alpha.frequency)$
+\begin_inset Formula $link.hash=SHA1((\beta.window-\alpha.window)+(\beta.frequency-\alpha.frequency)+\alpha.frequency)$
 \end_inset
 
 
@@ -5218,6 +5322,1160 @@ The produced links are quite reproducible, even in the presence of noise
 \begin_layout Standard
 On the server side each link is stored in a database along with the song
  information.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = Frequency $(Hz)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 13,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin = 0, ymax = 4000,
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 2.07246366282 , 746.01432767
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 1.93264031653 , 179.29405770
+1 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 0.354616533601 , 356.0396263
+84 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.15960458468 , 1381.492156
+86 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.72309319377 , 1629.633417
+81 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.71583919728 , 1427.860317
+78 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.9205238997 , 2753.72729596
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 0.546995939476 , 2353.2251799
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.18253338838 , 2840.39369243
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 1.68377804401 , 3526.04444
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.87609035949 , 3486.34030
+544 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.28755568283 , 3631.17508
+084 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 5.37811652146 , 453.91934777
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.60340316546 , 848.06920104
+4 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.66076427426 , 767.50608134
+2 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [no marks] coordinates { ( 5.44439247352 , 1886.11714475 ) ( 2.72309319377
+ , 1629.63341781 ) }; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 5.44439247352 , 1886.117144
+75 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.35650455297 , 1300.195594
+62 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.48669208201 , 1553.705384
+67 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.52845468778 , 2714.15145509
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.08857385548 , 2804.2520032
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.61746138453 , 2117.82647276
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.99339309721 , 3772.01111
+229 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.06746572113 , 3161.54155
+945 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 6.8101374698 , 3223.873258
+54 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 10.9291199934 , 215.84351805
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.97364518472 , 670.45556462
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 11.4093551256 , 411.45989448
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.35773280302 , 1555.566490
+25 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.39763433 , 1593.51003205
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.2909063891 , 1511.471438
+61 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 10.3596518529 , 2364.03590388
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.46484247359 , 2874.95727498
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.27698747616 , 2289.37228055
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.7884639082 , 3149.58028
+707 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.79733224029 , 3619.98382
+816 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.8469726013 , 3760.50482
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 2.72309319377 , 1629.63341781 )}; 
+\backslash
+addplot [no marks] coordinates { ( 2.07246366282 , 746.014327679 ) ( 4.60340316546
+ , 848.069201044 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 2.07246366282 , 746.01432767
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [no marks] coordinates { ( 1.93264031653 , 179.294057701 ) ( 4.60340316546
+ , 848.069201044 ) }; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 1.93264031653 , 179.29405770
+1 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 0.354616533601 , 356.0396263
+84 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.15960458468 , 1381.492156
+86 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.72309319377 , 1629.633417
+81 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.71583919728 , 1427.860317
+78 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.9205238997 , 2753.72729596
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 0.546995939476 , 2353.2251799
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.18253338838 , 2840.39369243
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 1.68377804401 , 3526.04444
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.87609035949 , 3486.34030
+544 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.28755568283 , 3631.17508
+084 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 5.37811652146 , 453.91934777
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.60340316546 , 848.06920104
+4 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.66076427426 , 767.50608134
+2 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 5.44439247352 , 1886.117144
+75 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.35650455297 , 1300.195594
+62 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.48669208201 , 1553.705384
+67 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.52845468778 , 2714.15145509
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.08857385548 , 2804.2520032
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.61746138453 , 2117.82647276
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.99339309721 , 3772.01111
+229 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.06746572113 , 3161.54155
+945 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 6.8101374698 , 3223.873258
+54 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 10.9291199934 , 215.84351805
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.97364518472 , 670.45556462
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 11.4093551256 , 411.45989448
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.35773280302 , 1555.566490
+25 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.39763433 , 1593.51003205
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.2909063891 , 1511.471438
+61 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 10.3596518529 , 2364.03590388
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.46484247359 , 2874.95727498
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.27698747616 , 2289.37228055
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.7884639082 , 3149.58028
+707 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.79733224029 , 3619.98382
+816 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.8469726013 , 3760.50482
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4.60340316546 , 848.069201044 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 2.07246366282 , 746.01432767
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 1.93264031653 , 179.29405770
+1 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 0.354616533601 , 356.0396263
+84 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.15960458468 , 1381.492156
+86 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.72309319377 , 1629.633417
+81 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.71583919728 , 1427.860317
+78 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.9205238997 , 2753.72729596
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 0.546995939476 , 2353.2251799
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.18253338838 , 2840.39369243
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 1.68377804401 , 3526.04444
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [no marks] coordinates { ( 2.87609035949 , 3486.34030544 ) ( 5.06746572113
+ , 3161.54155945 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.87609035949 , 3486.34030
+544 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [no marks] coordinates { ( 2.28755568283 , 3631.17508084 ) ( 5.06746572113
+ , 3161.54155945 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.28755568283 , 3631.17508
+084 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 5.37811652146 , 453.91934777
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.60340316546 , 848.06920104
+4 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.66076427426 , 767.50608134
+2 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 5.44439247352 , 1886.117144
+75 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.35650455297 , 1300.195594
+62 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.48669208201 , 1553.705384
+67 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.52845468778 , 2714.15145509
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.08857385548 , 2804.2520032
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.61746138453 , 2117.82647276
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.99339309721 , 3772.01111
+229 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.06746572113 , 3161.54155
+945 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [no marks] coordinates { ( 6.8101374698 , 3223.87325854 ) ( 5.06746572113
+ , 3161.54155945 ) }; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 6.8101374698 , 3223.873258
+54 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 10.9291199934 , 215.84351805
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.97364518472 , 670.45556462
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 11.4093551256 , 411.45989448
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.35773280302 , 1555.566490
+25 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.39763433 , 1593.51003205
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.2909063891 , 1511.471438
+61 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 10.3596518529 , 2364.03590388
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.46484247359 , 2874.95727498
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.27698747616 , 2289.37228055
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.7884639082 , 3149.58028
+707 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.79733224029 , 3619.98382
+816 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.8469726013 , 3760.50482
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 5.06746572113 , 3161.54155945 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 2.07246366282 , 746.01432767
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 1.93264031653 , 179.29405770
+1 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 0.354616533601 , 356.0396263
+84 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.15960458468 , 1381.492156
+86 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 2.72309319377 , 1629.633417
+81 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 3.71583919728 , 1427.860317
+78 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.9205238997 , 2753.72729596
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 0.546995939476 , 2353.2251799
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 2.18253338838 , 2840.39369243
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 1.68377804401 , 3526.04444
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.87609035949 , 3486.34030
+544 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 2.28755568283 , 3631.17508
+084 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 5.37811652146 , 453.91934777
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.60340316546 , 848.06920104
+4 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 4.66076427426 , 767.50608134
+2 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 5.44439247352 , 1886.117144
+75 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.35650455297 , 1300.195594
+62 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 6.48669208201 , 1553.705384
+67 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [no marks] coordinates { ( 6.52845468778 , 2714.15145509 ) ( 8.46484247359
+ , 2874.95727498 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.52845468778 , 2714.15145509
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [no marks] coordinates { ( 6.08857385548 , 2804.2520032 ) ( 8.46484247359
+ , 2874.95727498 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 6.08857385548 , 2804.2520032
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 7.61746138453 , 2117.82647276
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.99339309721 , 3772.01111
+229 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 5.06746572113 , 3161.54155
+945 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 6.8101374698 , 3223.873258
+54 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 10.9291199934 , 215.84351805
+9 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 8.97364518472 , 670.45556462
+6 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ blue ,only marks,mark=star] coordinates { ( 11.4093551256 , 411.45989448
+8 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 9.35773280302 , 1555.566490
+25 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.39763433 , 1593.51003205
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ green ,only marks,mark=star] coordinates { ( 11.2909063891 , 1511.471438
+61 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [no marks] coordinates { ( 10.3596518529 , 2364.03590388 ) ( 8.46484247359
+ , 2874.95727498 ) }; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 10.3596518529 , 2364.03590388
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.46484247359 , 2874.95727498
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ red ,only marks,mark=star] coordinates { ( 8.27698747616 , 2289.37228055
+ ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.7884639082 , 3149.58028
+707 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 9.79733224029 , 3619.98382
+816 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )}; 
+\backslash
+addplot [ orange ,only marks,mark=star] coordinates { ( 10.8469726013 , 3760.50482
+057 ) }; 
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 8.46484247359 , 2874.95727498 )};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Links-creation"
+
+\end_inset
+
+Links creation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = Frequency $(Hz)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 13,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin = 0, ymax = 4000,
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot [ only marks,mark=star,nodes near coords={(t1,f1)}] coordinates
+ { ( 4 , 2000 ) };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot [ only marks,mark=star,nodes near coords={(t2,f2)}] coordinates
+ { ( 7 , 2500 ) };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[only marks,mark=o,mark options={solid,scale=2, black},text mark
+ as node=true] coordinates {( 4, 2000 )};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot [no marks] coordinates { (4,2000) (7,2500) };
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[above,align=left] at (axis cs:8,1500) {hash$=t_2-t_1:f_2-f_1:f_1$
+\backslash
+
+\backslash
+time=$t_1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Links-creation-1"
+
+\end_inset
+
+Links creation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -5236,8 +6494,8 @@ Put the recording links in a temporary in-memory table
 \end_layout
 
 \begin_layout Itemize
-Inner join the full songs links table with the recording table when they
- share the same hash
+Relate the full songs links table with the recording table it they share
+ the same hash
 \end_layout
 
 \begin_layout Itemize

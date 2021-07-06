@@ -292,12 +292,12 @@ sounds
 \end_inset
 
 .
- Music is just a kind of signal which is made up of various sinusoidal waveforms
- and like that must be treated.
+ Music is just a kind of signal which can be reproduced using various sinusoidal
+ waveforms and like that must be treated.
 \end_layout
 
 \begin_layout Section
-All signals are sums of sines
+Signals scrambling via sines sums
 \end_layout
 
 \begin_layout Standard
@@ -599,7 +599,7 @@ a 20Hz sine wave
 \end_layout
 
 \begin_layout Standard
-But, in the real word, almost any signal is a weighted sum of sines.
+But, in the real world, almost any signal is a weighted sum of sines.
  For example, take three different sine waves, as follows:
 \end_layout
 
@@ -1071,626 +1071,6 @@ Sum of the three sine waves
 \end_layout
 
 \begin_layout Section
-Musical notes
-\end_layout
-
-\begin_layout Standard
-A music is a set of notes executed at a given time.
- Each note has a duration and an amplitude (loudness).
- The notes are divided in 
-\series bold
-octaves
-\series default
-, each octave consists of the notes between two consecutive Do inclusive.
- However many instruments provides more than 8 notes for each octave and
- those particular notes are called semitones.
-\end_layout
-
-\begin_layout Standard
-It should be taken into account that each note has its own well defined
- frequency, take for instance the 3
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-rd
-\end_layout
-
-\end_inset
-
- octave:
-\end_layout
-
-\begin_layout Itemize
-Do 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 261.63 Hz
-\end_layout
-
-\begin_layout Itemize
-Re 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 293.67 Hz
-\end_layout
-
-\begin_layout Itemize
-Mi 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 329.63 Hz
-\end_layout
-
-\begin_layout Itemize
-Fa 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 349.23 Hz
-\end_layout
-
-\begin_layout Itemize
-Sol 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 392 Hz
-\end_layout
-
-\begin_layout Itemize
-La 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 440Hz
-\end_layout
-
-\begin_layout Itemize
-Si 
-\begin_inset Formula $\Longrightarrow$
-\end_inset
-
- 493.88 Hz
-\end_layout
-
-\begin_layout Standard
-Furthermore it should be said that the frequency sensibility of ears is
- logarithmic, and that can be easily proved by the time the frequency of
- a note in an octave doubles in the next octave.
-\end_layout
-
-\begin_layout Standard
-In the figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Tipical-piano"
-
-\end_inset
-
- piano keys and frequencies are plotted by the function 
-\begin_inset Formula $f(n)=2^{\frac{n-49}{12}}\cdot440Hz$
-\end_inset
-
-.
- The red dashed lines represent the separation among octaves: notice that
- a part of the graph is grayed out, because on a normal piano there are
- at most 88 keys.
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-begin{axis}[
-\end_layout
-
-\begin_layout Plain Layout
-
-		domain=0:100,
-\end_layout
-
-\begin_layout Plain Layout
-
-		samples=50,
-\end_layout
-
-\begin_layout Plain Layout
-
-		width=
-\backslash
-textwidth,
-\end_layout
-
-\begin_layout Plain Layout
-
-		height=
-\backslash
-axisdefaultheight,
-\end_layout
-
-\begin_layout Plain Layout
-
-		xmin = 0, xmax = 100,
-\end_layout
-
-\begin_layout Plain Layout
-
-		ymin =  0, ymax = 8500,
-\end_layout
-
-\begin_layout Plain Layout
-
-		xlabel = $n$ key,
-\end_layout
-
-\begin_layout Plain Layout
-
-		ylabel = freq,
-\end_layout
-
-\begin_layout Plain Layout
-
-		axis x line=bottom,
-\end_layout
-
-\begin_layout Plain Layout
-
-		axis y line=center
-\end_layout
-
-\begin_layout Plain Layout
-
-	]
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot[
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=blue,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt
-\end_layout
-
-\begin_layout Plain Layout
-
-		]{
-\end_layout
-
-\begin_layout Plain Layout
-
-			440*2^((x-49)/12)
-\end_layout
-
-\begin_layout Plain Layout
-
-		};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(2, 0) (2, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(9, 0) (9, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(16, 0) (16, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(23, 0) (23, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(30, 0) (30, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(37, 0) (37, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(44, 0) (44, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(51, 0) (51, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-addplot +[
-\end_layout
-
-\begin_layout Plain Layout
-
-			dashed,
-\end_layout
-
-\begin_layout Plain Layout
-
-			line width=1pt,
-\end_layout
-
-\begin_layout Plain Layout
-
-			color=red,
-\end_layout
-
-\begin_layout Plain Layout
-
-			mark=none
-\end_layout
-
-\begin_layout Plain Layout
-
-		] coordinates {(52, 0) (52, 8500)};
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-		
-\backslash
-path [
-\end_layout
-
-\begin_layout Plain Layout
-
-			pattern=north west lines,
-\end_layout
-
-\begin_layout Plain Layout
-
-			pattern color = gray
-\end_layout
-
-\begin_layout Plain Layout
-
-		](52, 0) rectangle (100, 8000);
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-end{axis}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Tipical-piano"
-
-\end_inset
-
-Typical piano frequencies
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Spectrogram
 \end_layout
 
@@ -1706,9 +1086,9 @@ reference "fig:Spectrogram-of-a"
 
 \end_inset
 
-) is a visual representation on how the frequencies of a signal vary with
+) is a visual representation of how the frequencies of a signal vary with
  time.
- Usually a spectrogram is made up of the axis (making a 3D graph):
+ Usually, a spectrogram is made up of the axis (making a 3D graph):
 \end_layout
 
 \begin_layout Itemize
@@ -1773,8 +1153,8 @@ Digitalization
 \begin_layout Standard
 Nowadays the most common way to listen to music is via a digital file (such
  as an MP3 file or a FLAC file and so on).
- However a sound is an analog phenomena that needs to be converted in a
- 
+ However, a sound is an analog phenomenon that needs to be converted into
+ a 
 \series bold
 digital
 \series default
@@ -1890,9 +1270,9 @@ Suppose the highest frequency component for a given analog signal is
 There's enough theory involved in the theorem, but it states that given
  an analog signal, it needs at least 2 points per cycle to be correctly
  identified.
- So given that the frequencies that the human ears can listen sounds from
- 20 Hz to 20 kHz, take the highest boundary and multiply it by 2, it will
- give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
+ So given that the frequencies that the human ears can listen to sounds
+ from 20 Hz to 20 kHz, take the highest boundary and multiply it by 2, it
+ will give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2127,7 +1507,7 @@ Quantization
 \end_layout
 
 \begin_layout Standard
-With the sampling process the signal isn't fully digital: the time resolution
+With the sampling process, the signal isn't fully digital: the time resolution
  became discrete but what about signal amplitude? The amplitude of a signal
  represents its loudness, and in an analog world it is continuous, so there
  must be a way to make it discrete.
@@ -2136,7 +1516,7 @@ With the sampling process the signal isn't fully digital: the time resolution
 quantization
 \series default
 .
- The quantization resolution is measured in bit, also known as 
+ The quantization resolution is measured in bits, also known as 
 \series bold
 bit depth
 \series default
@@ -2149,8 +1529,8 @@ Let's take a depth of 3 bits, it means that the loudness of the song can
 \begin_inset Formula $2^{3}-1$
 \end_inset
 
- , so there are just 8 quantization level to represent the loudness of the
- whole song (figure 
+ , so there are just 8 quantization levels to represent the loudness of
+ the whole song (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:3-bit-quantization-example"
@@ -2306,8 +1686,8 @@ The higher the bit depth, the better the amplitude is approximated.
 16 bits
 \series default
 .
- For instance take the same previous analog signal with a 16-bit quantization:
- the amplitude can be assume 
+ For instance, take the same previous analog signal with a 16-bit quantization:
+ the amplitude can assume 
 \begin_inset Formula $2^{16}$
 \end_inset
 
@@ -2548,7 +1928,7 @@ neighborhood
 \end_inset
 
 .
- But this is not always possible for a normal audio signal, for instance
+ But this is not always possible for a normal audio signal, for instance,
  let's take a look at the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2556,8 +1936,8 @@ reference "fig:Audio-signal-example"
 
 \end_inset
 
-, the function represented isn't continuous, so it cannot be approximated
- by a Taylor polynomial.
+, the function represented is neither analytic nor continuous, so it cannot
+ be approximated by a Taylor polynomial.
 \end_layout
 
 \begin_layout Standard
@@ -2709,7 +2089,7 @@ The Fourier series
 
 \begin_layout Standard
 Joseph Fourier, a French mathematician, discovered a way to approximate
- a discontinuous function using a so called 
+ a discontinuous function using a so-called 
 \series bold
 trigonometric polynomial 
 \series default
@@ -3143,6 +2523,22 @@ If the function
 
 \end_inset
 
+where:
+\begin_inset Formula 
+\[
+a_{0}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\,dx=\sideset{\frac{2}{\pi}}{_{0}^{\pi}}\int f(x)\,dx
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a_{n}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\cos nx\,dx=\sideset{\frac{2}{\pi}}{_{0}^{\pi}}\int f(x)\cos nx\,dx
+\]
+
+\end_inset
+
 
 \end_layout
 
@@ -3155,6 +2551,42 @@ If the function
 \[
 \stackrel[n=1]{+\infty}{\sum}b_{n}\sin nx
 \]
+
+\end_inset
+
+where:
+\begin_inset Formula 
+\[
+b_{n}=\sideset{\frac{2}{\pi}}{_{0}^{\pi}}\int f(x)\sin nx\,dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The product of two even functions is an even function; the product of two
+ odd functions is an even function.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Integration by parts
+\series default
+ is often used to solve those integrals.
+\end_layout
 
 \end_inset
 
@@ -3254,7 +2686,7 @@ The interpretation is that the vector
 \begin_inset Formula $n$
 \end_inset
 
- in equal to the sum of the signal level at each time 
+ is equal to the sum of the signal level at each time 
 \begin_inset Formula $t$
 \end_inset
 
@@ -3540,7 +2972,7 @@ size of the window
 \end_layout
 
 \begin_layout Standard
-For instance, take a sampling rate of 8000 Hz and a windows size of 512,
+For instance, take a sampling rate of 8000 Hz and a window size of 512,
  this will give a bin size of 
 \series bold
 15.6 Hz
@@ -3577,7 +3009,7 @@ only the half of the bins computed by the DFT are needed
  An audio signal is a real input, and when the FT is applied to a real signal
  the output of the FT is symmetric, and that's why in the formula the N
  size is divided by 2.
- Also the sampling rate is divided by 2 for the Nyquist-Shannon theorem.
+ Also, the sampling rate is divided by 2 for the Nyquist-Shannon theorem.
 \end_layout
 
 \begin_layout Section
@@ -3800,7 +3232,7 @@ Rectangular window function example
 
 \begin_layout Standard
 By windowing the audio signal, the audio signal is multiplied by a window
- function which depends on the piece of audio signal under analysis.
+ function which depends on the piece of the audio signal under analysis.
  The usage of a window function produces 
 \series bold
 spectral leakage
@@ -3865,7 +3297,7 @@ Where:
 
 \begin_layout Standard
 The aim of this window function is to decrease the amplitude of the discontinuit
-ies at the boundaries of a given piece of audio signal (see figure 
+ies at the boundaries of a given piece of an audio signal (see figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Shape-the-signal"
@@ -4446,7 +3878,7 @@ Take a 3-minute song sampled at 44.1 kHz and compute its spectrogram with
 
 \begin_layout Standard
 Even worse if there are, to say, 100 songs to analyze.
- Thankfully, there are faster implementation of the DFT called FFT (Fast
+ Thankfully, there are faster implementations of the DFT called FFT (Fast
  Fourier Transform) which require just 
 \begin_inset Formula $\frac{3}{2}Nlog(N)$
 \end_inset
@@ -4466,10 +3898,10 @@ Downsampling and window size
 Downsampling 
 \series default
 is the process of reducing the sampling rate of a signal.
- Also the window size can be reduced accordingly, just take the highest
+ Also, the window size can be reduced accordingly, just take the highest
  acceptable value (the value which gives an acceptable frequency resolution).
  Take a standard song at 44.1 kHz and resample it at 8 kHz, use a window
- size of just 512: in this way there are less sample to analyze and the
+ size of just 512: in this way, there are fewer samples to analyze and the
  FFT is applied less frequently.
 \end_layout
 
@@ -4490,8 +3922,8 @@ Now let's put everything together and start coding the algorithm.
 \end_layout
 
 \begin_layout Standard
-The following sections will cover the a global overview of the algorithm,
- then the actual process involved in the song scoring.
+The following sections will cover a global overview of the algorithm, then
+ the actual process involved in the song scoring.
 \end_layout
 
 \begin_layout Section
@@ -4776,7 +4208,7 @@ When the server receives the recording fingerprints by the client it checks
 
 \begin_layout Standard
 In the following sections the algorithm is being described.
- Take in account that some obvious parts (such as the usage of the microphone
+ Take into account that some obvious parts (such as the usage of the microphone
  interface or the track file reading routines) will not be deeply described,
  since that they are simple and well-known.
 \end_layout
@@ -4795,7 +4227,7 @@ A 512-sized Hann window function is computed
 \end_layout
 
 \begin_layout Itemize
-The audio signal is divided in 512-sized window with a 50% overlap (figure
+The audio signal is divided in 512-sized windows with a 50% overlap (figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4807,11 +4239,12 @@ reference "fig:Audio-windowing-with-overlap"
 \end_layout
 
 \begin_layout Itemize
-Each audio window is multipied by the Hann precomputed window
+Each audio window is multiplied by the Hann precomputed window
 \end_layout
 
 \begin_layout Itemize
-The DFT is computed for each audio window and added into a list
+The DFT is computed for each audio window and added into a list which represents
+ the spectrogram
 \end_layout
 
 \begin_layout Standard
@@ -5116,10 +4549,332 @@ Audio windowing with overlap
 \end_layout
 
 \begin_layout Section
-Fingerprint generation
+Peaks finder and fingerprinting
 \end_layout
 
 \begin_layout Standard
+The spectrogram is then processed in order to obtain its most significant
+ information.
+ It is divided in a sort of a grid, each cell of the grid has the following
+ sizes:
+\end_layout
+
+\begin_layout Itemize
+Width equals to 
+\begin_inset Formula $C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Height equals to a range of frequencies (called 
+\series bold
+band
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+Take the simplified figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Spectrum-division"
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Each color is a band
+\end_layout
+
+\end_inset
+
+ where:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C=12$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The band size is always 100 Hz
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = Frequency,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 13,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin = 0, ymax = 4000,
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=blue, line width=1pt] (0,0)
+ rectangle (40,100);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=blue, line width=1pt] (40,0)
+ rectangle (80,100);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=blue, line width=1pt] (80,0)
+ rectangle (120,100);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=green, line width=1pt] (0,100)
+ rectangle (40,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=green, line width=1pt] (40,100)
+ rectangle (80,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=green, line width=1pt] (80,100)
+ rectangle (120,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=red, line width=1pt] (0,200)
+ rectangle (40,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=red, line width=1pt] (40,200)
+ rectangle (80,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=red, line width=1pt] (80,200)
+ rectangle (120,300);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=orange, line width=1pt] (0,300)
+ rectangle (40,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north west lines, pattern color=orange, line width=1pt] (40,300)
+ rectangle (80,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[pattern=north east lines, pattern color=orange, line width=1pt] (80,300)
+ rectangle (120,400);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[decoration={brace,mirror,raise=15pt},decorate]   (0,0) -- node[below=16pt]
+ {
+\backslash
+textbf{C}} (3.2,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[decoration={brace,mirror},decorate]   (10.8,0) -- node[xshift=10pt]
+ {
+\backslash
+rotatebox{-90}{
+\backslash
+textbf{band}}} (10.8,1.4);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Spectrum-division"
+
+\end_inset
+
+Spectrum division
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+In the actual algorithm 
+\begin_inset Formula $C=32$
+\end_inset
+
+ and the bands sizes follow a logarithmic scale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
 
 \end_layout
 

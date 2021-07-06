@@ -8,6 +8,7 @@
 \begin_preamble
 \usepackage{pgfplots}
 \usetikzlibrary{patterns}
+\usetikzlibrary{positioning,fit}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
@@ -257,8 +258,6 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \align center
-
-\lang italian
 \begin_inset ERT
 status open
 
@@ -279,8 +278,6 @@ Music and physics
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 A sound is a vibration that propagates through the air and can be understood
  by ears.
  MP3 players or computers use headphones or built-in speakers to produce
@@ -298,21 +295,16 @@ sounds
 \end_layout
 
 \begin_layout Section
-
-\lang italian
 All signals are sums of sines
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 A sine wave is characterized by two parameters:
 \end_layout
 
 \begin_layout Itemize
 
 \shape italic
-\lang italian
 Frequency
 \shape default
  
@@ -325,7 +317,6 @@ Frequency
 \begin_layout Itemize
 
 \shape italic
-\lang italian
 Amplitude
 \shape default
  
@@ -611,9 +602,7 @@ But, in the real word, almost any signal is a weighted sum of sines.
 \end_layout
 
 \begin_layout Itemize
-Frequency 10Hz and amplitude 1
-\lang italian
- 
+Frequency 10Hz and amplitude 1 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
@@ -625,9 +614,7 @@ Frequency 10Hz and amplitude 1
 \end_layout
 
 \begin_layout Itemize
-Frequency 30Hz and amplitude 2
-\lang italian
- 
+Frequency 30Hz and amplitude 2 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
@@ -639,9 +626,7 @@ Frequency 30Hz and amplitude 2
 \end_layout
 
 \begin_layout Itemize
-Frequency 60Hz and amplitude 3
-\lang italian
- 
+Frequency 60Hz and amplitude 3 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
@@ -653,8 +638,6 @@ Frequency 60Hz and amplitude 3
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 Those three functions can be plotted separately as shown in the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1091,14 +1074,14 @@ Musical notes
 
 \begin_layout Standard
 A music is a set of notes executed at a given time.
- Each note has a duration and an amplitude (lodness).
+ Each note has a duration and an amplitude (loudness).
  The notes are divided in 
 \series bold
 octaves
 \series default
 , each octave consists of the notes between two consecutive Do inclusive.
  However many instruments provides more than 8 notes for each octave and
- those particular notes are colled semitones.
+ those particular notes are called semitones.
 \end_layout
 
 \begin_layout Standard
@@ -1117,8 +1100,6 @@ rd
 
 \begin_layout Itemize
 Do 
-\lang italian
-
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
@@ -1126,8 +1107,6 @@ Do
 \end_layout
 
 \begin_layout Itemize
-
-\lang italian
 Re 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
@@ -1137,8 +1116,6 @@ Re
 
 \begin_layout Itemize
 Mi 
-\lang italian
-
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
@@ -1146,8 +1123,6 @@ Mi
 \end_layout
 
 \begin_layout Itemize
-
-\lang italian
 Fa 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
@@ -1156,8 +1131,6 @@ Fa
 \end_layout
 
 \begin_layout Itemize
-
-\lang italian
 Sol 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
@@ -1166,8 +1139,6 @@ Sol
 \end_layout
 
 \begin_layout Itemize
-
-\lang italian
 La 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
@@ -1176,8 +1147,6 @@ La
 \end_layout
 
 \begin_layout Itemize
-
-\lang italian
 Si 
 \begin_inset Formula $\Longrightarrow$
 \end_inset
@@ -1186,16 +1155,12 @@ Si
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
-Furthermore it should be said that the frequency sensivity of ears is logaritmic
-, and that can be easily proved by the time the frequency of a note in an
- octave doubles in the next octave.
+Furthermore it should be said that the frequency sensibility of ears is
+ logarithmic, and that can be easily proved by the time the frequency of
+ a note in an octave doubles in the next octave.
 \end_layout
 
 \begin_layout Standard
-
-\lang italian
 In the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1203,9 +1168,7 @@ reference "fig:Tipical-piano"
 
 \end_inset
 
- piano keys and frequencies are plotted
-\lang english
- by the function 
+ piano keys and frequencies are plotted by the function 
 \begin_inset Formula $f(n)=2^{\frac{n-49}{12}}\cdot440Hz$
 \end_inset
 
@@ -1712,7 +1675,7 @@ name "fig:Tipical-piano"
 
 \end_inset
 
-Tipical piano frequencies
+Typical piano frequencies
 \end_layout
 
 \end_inset
@@ -1813,7 +1776,7 @@ Nowadays the most common way to listen to music is via a digital file (such
 \series bold
 digital
 \series default
- represetation, in order to be easily recorded and stored.
+ representation, in order to be easily recorded and stored.
 \end_layout
 
 \begin_layout Subsection
@@ -1829,7 +1792,7 @@ Analog signals are continuous signals, that means that given two boundaries
 discrete-time signal
 \series default
 .
- This process is colled 
+ This process is called 
 \series bold
 sampling
 \series default
@@ -1922,8 +1885,9 @@ Suppose the highest frequency component for a given analog signal is
 \end_layout
 
 \begin_layout Standard
-There's enough thery invoved in the theorem, but it states that given an
- analog signal, it needs at least 2 points per cycle to be correctly identified.
+There's enough theory involved in the theorem, but it states that given
+ an analog signal, it needs at least 2 points per cycle to be correctly
+ identified.
  So given that the frequencies that the human ears can listen sounds from
  20 Hz to 20 kHz, take the highest boundary and multiply it by 2, it will
  give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
@@ -2335,7 +2299,7 @@ name "fig:3-bit-quantization-example"
 
 \begin_layout Standard
 The higher the bit depth, the better the amplitude is approximated.
- The standardad quantization is coded on 
+ The standard quantization is coded on 
 \series bold
 16 bits
 \series default
@@ -2564,18 +2528,18 @@ If the upper limit of the summation is not an
 \begin_inset Formula $N$
 \end_inset
 
- then a Taylor polynomial is beign calculated.
+ then a Taylor polynomial is being calculated.
 \end_layout
 
 \begin_layout Standard
 The Taylor's theorem states that any function can be expressed as a Taylor
- seriers as long as the function can be derivated 
+ series as long as the function can be derived 
 \begin_inset Formula $N$
 \end_inset
 
  times in a 
 \series bold
-neighbourhood
+neighborhood
 \series default
  of 
 \begin_inset Formula $a$
@@ -2742,7 +2706,7 @@ The Fourier series
 \end_layout
 
 \begin_layout Standard
-Joseph Fourier, a french mathematician, discovered a way to approximate
+Joseph Fourier, a French mathematician, discovered a way to approximate
  a discontinuous function using a so called 
 \series bold
 trigonometric polynomial 
@@ -3609,8 +3573,8 @@ only the half of the bins computed by the DFT are needed
 \series default
 .
  An audio signal is a real input, and when the FT is applied to a real signal
- the output of the FT is symetric, and that's why in the forumla the N size
- is divided by 2.
+ the output of the FT is symmetric, and that's why in the formula the N
+ size is divided by 2.
  Also the sampling rate is divided by 2 for the Nyquist-Shannon theorem.
 \end_layout
 
@@ -3629,7 +3593,7 @@ es amplitude for (just saying) the first
 
 \begin_layout Standard
 The problem is that in this way a rectangular function is implicitly applied:
- a function that equals 1 for the song portion under analisys and 0 elsewhere
+ a function that equals 1 for the song portion under analysis and 0 elsewhere
  (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3833,8 +3797,8 @@ Rectangular window function example
 \end_layout
 
 \begin_layout Standard
-By windowing the audio signal, the audio signal is multipled by a window
- function which depends on the piece of audio signal udner analisys.
+By windowing the audio signal, the audio signal is multiplied by a window
+ function which depends on the piece of audio signal under analysis.
  The usage of a window function produces 
 \series bold
 spectral leakage
@@ -3860,7 +3824,7 @@ Spectral leakage can't be avoided but it can be controlled or even reduced
 \end_layout
 
 \begin_layout Standard
-When analysing unknown data or high noise ones probably the best choise
+When analyzing unknown data or high noise ones probably the best choice
  is the Hann window function, defined by the following formula:
 \end_layout
 
@@ -4440,7 +4404,7 @@ Time complexity and simplifications
 
 \begin_layout Standard
 Looking again at the DFT formula it can be seen that N additions and N multiplic
-ations are nedded to compute just a bin.
+ations are needed to compute just a bin.
  This means that 
 \begin_inset Formula $2N^{2}$
 \end_inset
@@ -4501,10 +4465,10 @@ Downsampling
 \series default
 is the process of reducing the sampling rate of a signal.
  Also the window size can be reduced accordingly, just take the highest
- acceptale value (the value which gives an acceptable frequency resolution).
+ acceptable value (the value which gives an acceptable frequency resolution).
  Take a standard song at 44.1 kHz and resample it at 8 kHz, use a window
  size of just 512: in this way there are less sample to analyze and the
- FFT si applied less frequently.
+ FFT is applied less frequently.
 \end_layout
 
 \begin_layout Standard
@@ -4518,7 +4482,301 @@ The actual algorithm
 \end_layout
 
 \begin_layout Standard
+Now let's put everything together and start coding the algorithm.
+ The aim of the software is to record a small portion of a song and find
+ its title.
+\end_layout
 
+\begin_layout Standard
+The following sections will cover the a global overview of the algorithm,
+ then the actual process involved in the song scoring.
+\end_layout
+
+\begin_layout Section
+Global overview
+\end_layout
+
+\begin_layout Standard
+An 
+\series bold
+audio fingerprint 
+\series default
+is a digital summary that can be used to identify an audio sample.
+ In the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:General-overview-scheme"
+
+\end_inset
+
+ a simplified architecture of the scoring algorithm is represented.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[box/.style={draw,rounded corners,text width=2.5cm,node
+ distance=1cm and 3 cm,align=center}]
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[box] (a) {
+\backslash
+textbf{Song files}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[box,right=of a] (b) {
+\backslash
+textbf{Fingerprint database}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[box,below=of b] (c) {
+\backslash
+textbf{Server}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[box,below=of c] (d) {
+\backslash
+textbf{Recording fingerprint}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[box,left=of d] (e) {
+\backslash
+textbf{Recording}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->] (a) to node [above] {
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{tabular}{cc}
+\end_layout
+
+\begin_layout Plain Layout
+
+			Fingerprinting
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			Algorithm
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} (b);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[<-] (b) to node [right] {Search} (c);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->] (e) to node [above] {
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{tabular}{cc}
+\end_layout
+
+\begin_layout Plain Layout
+
+			Fingerprinting
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			Algorithm
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+	} (d);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->] (d) to node [right] {Sent to} (c);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[draw,dotted,fit=(a)(b)(c),label=left:
+\backslash
+rotatebox{90}{Server-side}] {};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[draw,dotted,fit=(d)(e),label=left:
+\backslash
+rotatebox{90}{Client-side}] {};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:General-overview-scheme"
+
+\end_inset
+
+General overview scheme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the 
+\series bold
+server side
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+The algorithm computes the fingerprints of input tracks
+\end_layout
+
+\begin_layout Itemize
+Store the fingerprints in the database
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the 
+\series bold
+client side
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Record the current playing music for a couple of seconds
+\end_layout
+
+\begin_layout Itemize
+Compute the fingerprints of the recording
+\end_layout
+
+\begin_layout Itemize
+Send them to the server
+\end_layout
+
+\begin_layout Itemize
+Output the server response
+\end_layout
+
+\begin_layout Standard
+When the server receives the recording fingerprints by the client it checks
+ if they are present in the database and sends a response to the client.
+\end_layout
+
+\begin_layout Standard
+In the following sections the algorithm is being described.
+ Take in account that some obvious parts (such as the usage of the microphone
+ interface or the track file reading routines) will not be deeply described,
+ since that they are simple and well-known.
 \end_layout
 
 \end_body

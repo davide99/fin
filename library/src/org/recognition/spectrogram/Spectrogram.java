@@ -39,7 +39,6 @@ public class Spectrogram {
         //Calc time
         for (int i = 0; i < Consts.times.length; i++)
             Consts.times[i] = stepSize * i / Consts.SAMPLE_RATE;
-
     }
 
     public List<Complex[]> getWinFFT() {

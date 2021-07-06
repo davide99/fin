@@ -1093,7 +1093,696 @@ A music is a set of notes executed at a given time.
 octaves
 \series default
 , each octave consists of the notes between two consecutive Do inclusive.
- Also, the frequency of a note in an octave doubles in the next octave.
+ However many instruments provides more than 8 notes for each octave and
+ those particular notes are colled semitones.
+\end_layout
+
+\begin_layout Standard
+It should be taken into account that each note has its own well defined
+ frequency, take for instance the 3
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+rd
+\end_layout
+
+\end_inset
+
+ octave:
+\end_layout
+
+\begin_layout Itemize
+Do 
+\lang italian
+
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 261.63 Hz
+\end_layout
+
+\begin_layout Itemize
+
+\lang italian
+Re 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 293.67 Hz
+\end_layout
+
+\begin_layout Itemize
+Mi 
+\lang italian
+
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 329.63 Hz
+\end_layout
+
+\begin_layout Itemize
+
+\lang italian
+Fa 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 349.23 Hz
+\end_layout
+
+\begin_layout Itemize
+
+\lang italian
+Sol 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 392 Hz
+\end_layout
+
+\begin_layout Itemize
+
+\lang italian
+La 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 440Hz
+\end_layout
+
+\begin_layout Itemize
+
+\lang italian
+Si 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ 493.88 Hz
+\end_layout
+
+\begin_layout Standard
+
+\lang italian
+Furthermore it should be said that the frequency sensivity of ears is logaritmic
+, and that can be easily proved by the time the frequency of a note in an
+ octave doubles in the next octave.
+\end_layout
+
+\begin_layout Standard
+
+\lang italian
+In the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tipical-piano"
+
+\end_inset
+
+ piano keys and frequencies are plotted
+\lang english
+ by the function 
+\begin_inset Formula $f(n)=2^{\frac{n-49}{12}}\cdot440Hz$
+\end_inset
+
+.
+ The red dashed lines represent the separation among octaves: notice that
+ a part of the graph is grayed out, because on a normal piano there are
+ at most 88 keys.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:100,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=50,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 100,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin =  0, ymax = 8500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = $n$ key,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = freq,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=bottom,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=center
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			440*2^((x-49)/12)
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(2, 0) (2, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(9, 0) (9, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(16, 0) (16, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(23, 0) (23, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(30, 0) (30, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(37, 0) (37, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(44, 0) (44, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(51, 0) (51, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot +[
+\end_layout
+
+\begin_layout Plain Layout
+
+			dashed,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=none
+\end_layout
+
+\begin_layout Plain Layout
+
+		] coordinates {(52, 0) (52, 8500)};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+path [
+\end_layout
+
+\begin_layout Plain Layout
+
+			pattern=north west lines,
+\end_layout
+
+\begin_layout Plain Layout
+
+			pattern color = gray
+\end_layout
+
+\begin_layout Plain Layout
+
+		](52, 0) rectangle (100, 8000);
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tipical-piano"
+
+\end_inset
+
+Tipical piano frequencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[x={(1cm,0.5cm)},z={(0cm,0.5cm)},y={(1cm,-0.2cm)}] 
+\backslash
+draw[->,thick,black!70] (0,6.5,0) -- (6.2,6.5,0) node[right] {Frequency}; 
+\backslash
+draw[->,thick,black!70] (0,0,0) -- (0,6.5,0) node[below right] {Time}; 
+\backslash
+draw[->,thick] (0,0,0) -- (0,0,2) node[above] {Magnitude}; 
+\backslash
+foreach 
+\backslash
+y in {0.5,1.5,...,5.5}{ 
+\backslash
+draw [cyan!50, domain=0:2*pi,samples=200,smooth]   plot (
+\backslash
+y,
+\backslash
+x, {sin(4*
+\backslash
+y*
+\backslash
+x r)/
+\backslash
+y }); 
+\backslash
+draw[blue, ultra thick] (
+\backslash
+y,6.5,0) -- (
+\backslash
+y,6.5,1/
+\backslash
+y); } 
+\backslash
+draw [red, thick, domain=0:2*pi,samples=200,smooth]  plot (0,
+\backslash
+x, {sin(4*0.5*
+\backslash
+x r)/0.5 + sin(4*1.5*
+\backslash
+x r)/1.5 + sin(4*2.5*
+\backslash
+x r)/2.5 + sin(4*3.5*
+\backslash
+x r)/3.5 + sin(4*4.5*
+\backslash
+x r)/4.5 + sin(4*5.5*
+\backslash
+x r)/5.5} ); 
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

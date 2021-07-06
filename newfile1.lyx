@@ -14,7 +14,8 @@
 \usetikzlibrary{patterns}
 \usetikzlibrary{positioning,fit}
 \usetikzlibrary{er}
-\usepackage{pgf-umlcd}
+\usepackage{pgf-umlcd}\usepackage{hyperref}
+\def\UrlBreaks{\do\/\do-}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
@@ -1238,6 +1239,10 @@ f_{s}=\frac{1}{T}
 The standard sampling rate for digital music is usually 44100 Hz.
  The reason behind that number lies in the Nyquist-Shannon theorem which
  can be expressed as:
+\begin_inset VSpace defskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1260,6 +1265,12 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "Nyquist"
+
+\end_inset
+
 Suppose the highest frequency component for a given analog signal is 
 \begin_inset Formula $f_{max}$
 \end_inset
@@ -1276,14 +1287,18 @@ Suppose the highest frequency component for a given analog signal is
 \end_inset
 
 
+\begin_inset VSpace defskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-There's enough theory involved in the theorem, but it states that given
+There is enough theory involved in the theorem, but it states that given
  an analog signal, it needs at least 2 points per cycle to be correctly
  identified.
- So given that the frequencies that the human ears can listen to sounds
- from 20 Hz to 20 kHz, take the highest boundary and multiply it by 2, it
+ So, since the human ears can listen to singnals whose frequency is between
+ 20 Hz and 20 kHz, taking the highest boundary and multiply it by 2, it
  will give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
  
 \begin_inset CommandInset ref
@@ -1519,7 +1534,7 @@ Quantization
 \end_layout
 
 \begin_layout Standard
-With the sampling process, the signal isn't fully digital: the time resolution
+With the sampling process, the signal is not fully digital: the time resolution
  became discrete but what about signal amplitude? The amplitude of a signal
  represents its loudness, and in an analog world it is continuous, so there
  must be a way to make it discrete.
@@ -1536,8 +1551,8 @@ bit depth
 \end_layout
 
 \begin_layout Standard
-Let's take a depth of 3 bits, it means that the loudness of the song can
- vary between 0 and 
+Taking a depth of 3 bits means that the loudness of the song can vary between
+ 0 and 
 \begin_inset Formula $2^{3}-1$
 \end_inset
 
@@ -1698,12 +1713,12 @@ The higher the bit depth, the better the amplitude is approximated.
 16 bits
 \series default
 .
- For instance, take the same previous analog signal with a 16-bit quantization:
+ For instance, in the same previous analog signal with a 16-bit quantization
  the amplitude can assume 
 \begin_inset Formula $2^{16}$
 \end_inset
 
- values, which will give a lot more precise accuracy (figure 
+ values, which will give a much more precise accuracy (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:16-bit-quantization-example-1"
@@ -1941,7 +1956,7 @@ neighborhood
 
 .
  But this is not always possible for a normal audio signal, for instance,
- let's take a look at the figure 
+ seeing the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Audio-signal-example"
@@ -2105,7 +2120,7 @@ Joseph Fourier, a French mathematician, discovered a way to approximate
 \series bold
 trigonometric polynomial 
 \series default
-or even a 
+or a 
 \series bold
 trigonometric series
 \series default
@@ -2175,6 +2190,10 @@ A trigonometric polynomial of order
 
 \end_layout
 
+\end_inset
+
+
+\begin_inset VSpace defskip
 \end_inset
 
 
@@ -2287,6 +2306,10 @@ A trigonometric series is a series of functions like:
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
 \begin_inset Formula $a_{0}$
 \end_inset
 
@@ -2310,7 +2333,7 @@ Fourier coefficients
 \end_layout
 
 \begin_layout Standard
-Take the generic function 
+Take a generic periodic function 
 \begin_inset Formula $f(x)$
 \end_inset
 
@@ -2340,7 +2363,7 @@ Take the generic function
 \end_inset
 
 .
-\begin_inset VSpace defskip
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -2354,6 +2377,7 @@ Def.
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset Box Doublebox
 position "t"
 hor_pos "c"
@@ -2447,6 +2471,7 @@ Def.
 \end_layout
 
 \begin_layout Standard
+\noindent
 \begin_inset Box Doublebox
 position "t"
 hor_pos "c"
@@ -2520,7 +2545,7 @@ If the function
 \begin_inset Formula $f(x)$
 \end_inset
 
- to expanded is even or odd the Fourier series can be simplified as follows:
+ to be expanded is even or odd the Fourier series can be simplified as follows:
 \end_layout
 
 \begin_layout Itemize
@@ -2528,6 +2553,25 @@ If the function
 \end_inset
 
  is even, Fourier series is a cosines series
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The product of two even functions is an even function; the product of two
+ odd functions is an even function.
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+Integration by parts
+\series default
+ is often used to solve those integrals.
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \[
 \frac{a_{0}}{2}+\stackrel[n=1]{+\infty}{\sum}a_{n}\cos nx
@@ -2577,47 +2621,23 @@ b_{n}=\sideset{\frac{2}{\pi}}{_{0}^{\pi}}\int f(x)\sin nx\,dx
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-The product of two even functions is an even function; the product of two
- odd functions is an even function.
-\end_layout
-
-\end_inset
-
-
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Integration by parts
-\series default
- is often used to solve those integrals.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Discrete Fourier Transform
 \end_layout
 
 \begin_layout Standard
-The DFT (Discrete Fourier Transform) applies to discrete signals and gives
- a discrete spectrum.
+The 
+\series bold
+DFT
+\series default
+ (Discrete Fourier Transform) applies to discrete signals and gives a discrete
+ spectrum.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-X(n)=\stackrel[t=0]{N-1}{\sum}x(t)e^{-i(2\pi tn/N)}
+X(n)=\stackrel[t=0]{N-1}{\sum}x(t)e^{-\frac{i2\pi tn}{N}}
 \]
 
 \end_inset
@@ -2944,7 +2964,7 @@ frequency resolution
 \begin_layout Standard
 \begin_inset Formula 
 \[
-B_{S}=\frac{\frac{F_{S}}{2}}{\frac{N}{2}}=\frac{F_{S}}{N}
+B_{S}=\frac{F_{S}}{N}
 \]
 
 \end_inset
@@ -2984,8 +3004,8 @@ size of the window
 \end_layout
 
 \begin_layout Standard
-For instance, take a sampling rate of 8000 Hz and a window size of 512,
- this will give a bin size of 
+For instance, taking a sampling rate of 8000 Hz and a window size of 512,
+ the bin size will be of 
 \series bold
 15.6 Hz
 \series default
@@ -3019,9 +3039,15 @@ only the half of the bins computed by the DFT are needed
 \series default
 .
  An audio signal is a real input, and when the FT is applied to a real signal
- the output of the FT is symmetric, and that's why in the formula the N
- size is divided by 2.
- Also, the sampling rate is divided by 2 for the Nyquist-Shannon theorem.
+ the output of the FT is symmetric.
+\end_layout
+
+\begin_layout Standard
+One of the fastest implementation of the DFT is the 
+\series bold
+FFT
+\series default
+ (Fast Fourier Transform) algorithm, which will be used later.
 \end_layout
 
 \begin_layout Section
@@ -3250,7 +3276,7 @@ By windowing the audio signal, the audio signal is multiplied by a window
 spectral leakage
 \series default
 .
- Spectral leakage is the apparition of new frequencies that doesn't exist
+ Spectral leakage is the appearance of new frequencies that doesn't exist
  inside the audio signal.
  The power of the real frequencies is leaked to others frequencies.
 \end_layout
@@ -3263,15 +3289,15 @@ spectral leakage
 \end_layout
 
 \begin_layout Standard
-Spectral leakage can't be avoided but it can be controlled or even reduced
- by choosing the right window function: there are many different window
- function besides the rectangular one.
+Spectral leakage can't be avoided but it can be controlled and reduced by
+ choosing the right window function: there are many different window function
+ besides the rectangular one.
  Just to name a few: triangular, Blackman, Hamming, Hann and many others.
 \end_layout
 
 \begin_layout Standard
-When analyzing unknown data or high noise ones probably the best choice
- is the Hann window function, defined by the following formula:
+When analyzing unknown very noisy data best choice is the Hann window function,
+ defined by the following formula:
 \end_layout
 
 \begin_layout Standard
@@ -3845,62 +3871,6 @@ Shape the signal with a window function
 \end_layout
 
 \begin_layout Section
-Time complexity and simplifications
-\end_layout
-
-\begin_layout Standard
-Looking again at the DFT formula it can be seen that N additions and N multiplic
-ations are needed to compute just a bin.
- This means that 
-\begin_inset Formula $2N^{2}$
-\end_inset
-
- operations are required for each bin and this is a lot of work.
-\end_layout
-
-\begin_layout Standard
-Take a 3-minute song sampled at 44.1 kHz and compute its spectrogram with
- a 4096-sized window.
- The software need to compute 
-\begin_inset Formula $\frac{44100}{4096}\simeq10.8$
-\end_inset
-
- DFT per second so
-\begin_inset Formula $\frac{44100}{4096}\cdot3\cdot60\simeq1938$
-\end_inset
-
- DFT for the full song.
- Each DFT needs 
-\begin_inset Formula $2\cdot4096^{2}$
-\end_inset
-
- operations, so:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\frac{44100}{\cancel{4096}}\cdot3\cdot60\cdot2\cdot4096^{\cancel{2}}\simeq6.5\cdot10^{10}\,\textrm{operations}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Even worse if there are, to say, 100 songs to analyze.
- Thankfully, there are faster implementations of the DFT called FFT (Fast
- Fourier Transform) which require just 
-\begin_inset Formula $\frac{3}{2}Nlog(N)$
-\end_inset
-
- operations.
- But this is not enough: the time complexity of the whole algorithm can
- be reduced with some other tricks.
-\end_layout
-
-\begin_layout Subsection
 Downsampling and window size
 \end_layout
 
@@ -3910,17 +3880,24 @@ Downsampling and window size
 Downsampling 
 \series default
 is the process of reducing the sampling rate of a signal.
- Also, the window size can be reduced accordingly, just take the highest
+ Also, the window size can be reduced accordingly, taking the highest possible
  acceptable value (the value which gives an acceptable frequency resolution).
- Take a standard song at 44.1 kHz and resample it at 8 kHz, use a window
- size of just 512: in this way, there are fewer samples to analyze and the
- FFT is applied less frequently.
+ For instance, resample a song from 44.1 kHz to 8 kHz and use a window size
+ of just 512: in this way, there are fewer samples to analyze and the FFT
+ is applied less frequently.
 \end_layout
 
 \begin_layout Standard
 The only difference is that the resampled song will only have frequencies
- from 0 to 4 kHz (Nyquist-Shannon theorem), but the most important part
- of a song is still present in this range of frequencies.
+ from 0 to 4 kHz (Nyquist-Shannon theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Nyquist"
+
+\end_inset
+
+), but the most important part of the song is still present in this range
+ of frequencies.
 \end_layout
 
 \begin_layout Chapter
@@ -3928,7 +3905,7 @@ The actual algorithm
 \end_layout
 
 \begin_layout Standard
-Now let's put everything together and start coding the algorithm.
+Now it is the time to put everything together and start coding the algorithm.
  The aim of the software is to record a small portion of a song and find
  its title.
 \end_layout
@@ -3936,6 +3913,12 @@ Now let's put everything together and start coding the algorithm.
 \begin_layout Standard
 The following sections will cover a global overview of the algorithm, then
  the actual process involved in the song scoring.
+\end_layout
+
+\begin_layout Standard
+Take into account that, at this abstraction level, some obvious parts (such
+ as the usage of the microphone interface or the track file reading routines)
+ will not be described, since they are standard pieces of code.
 \end_layout
 
 \begin_layout Section
@@ -3956,6 +3939,10 @@ reference "fig:General-overview-scheme"
 \end_inset
 
  a simplified architecture of the scoring algorithm is represented.
+\begin_inset VSpace defskip
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -4163,10 +4150,6 @@ General overview scheme
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 On the 
 \series bold
 server side
@@ -4175,7 +4158,7 @@ server side
 \end_layout
 
 \begin_layout Itemize
-The algorithm computes the fingerprints of input tracks
+The algorithm computes the fingerprints of the input tracks
 \end_layout
 
 \begin_layout Itemize
@@ -4186,10 +4169,6 @@ Store the fingerprints in the database
 \begin_inset VSpace defskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 On the 
 \series bold
 client side
@@ -4214,15 +4193,12 @@ Output the server response
 \end_layout
 
 \begin_layout Standard
-When the server receives the recording fingerprints by the client it checks
- if they are present in the database and sends a response to the client.
+When the server receives the recording fingerprints sent by the client it
+ checks if they are in the database and sends a response to the client.
 \end_layout
 
 \begin_layout Standard
 In the following sections the algorithm is being described.
- Take into account that some obvious parts (such as the usage of the microphone
- interface or the track file reading routines) will not be deeply described,
- since that they are simple and well-known.
 \end_layout
 
 \begin_layout Section
@@ -4567,8 +4543,8 @@ Peaks finder and fingerprinting
 \begin_layout Standard
 The spectrogram is then processed in order to obtain its most significant
  information.
- It is divided in a sort of a grid, each cell of the grid has the following
- sizes:
+ It is divided into a sort of a grid where each cell of the grid has the
+ following size:
 \end_layout
 
 \begin_layout Itemize
@@ -4880,7 +4856,7 @@ In the actual algorithm
 \begin_inset Formula $C=32$
 \end_inset
 
- and the bands sizes follow a logarithmic scale.
+ and the bands lengths follow a logarithmic scale.
 \end_layout
 
 \begin_layout Standard
@@ -5259,17 +5235,12 @@ links
 \series default
 , and it represents a relationship between a point and some others.
  In order to be sure that both the recording and the full song will generate
- the same links, some rules must be defined:
-\end_layout
+ the same links, a rule must be defined: spectrogram points must be sorted
+ in ascending order according to the window they belong to.
+\begin_inset VSpace defskip
+\end_inset
 
-\begin_layout Itemize
-Spectrogram points must be sorted in ascending order according to the window
- they belong to
-\end_layout
 
-\begin_layout Itemize
-Spectrogram points must be sorted in ascending order according to their
- powers
 \end_layout
 
 \begin_layout Standard
@@ -5283,7 +5254,11 @@ So, given a point
 \begin_inset Formula $\alpha$
 \end_inset
 
- and an initially empty set of points A, the algorithm will put in A all
+ (called 
+\series bold
+address
+\series default
+) and an initially empty set of points A, the algorithm will put in A all
  the other points whose window difference compared to the point 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -5318,7 +5293,14 @@ reference "fig:Links-creation"
 \end_inset
 
 ).
- The link structure is the following:
+ The link structure is the following (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Link-structure"
+
+\end_inset
+
+):
 \end_layout
 
 \begin_layout Standard
@@ -6485,11 +6467,11 @@ end{tikzpicture}
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Links-creation-1"
+name "fig:Link-structure"
 
 \end_inset
 
-Links creation
+Link structure
 \end_layout
 
 \end_inset
@@ -6535,7 +6517,7 @@ Count the tuples grouped by the time difference between the recording links
 status open
 
 \begin_layout Plain Layout
-Links of the same song, share the same time difference
+Links of the same song share the same time difference
 \end_layout
 
 \end_inset
@@ -6557,23 +6539,198 @@ Java implementation
 
 \begin_layout Standard
 In the next sections the Java implementation of the algorithm will be discussed.
- Some of the most well-known part of the implementation will not be covered
- here, since they are standard pieces of code.
- In the figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Class-diagram"
-
-\end_inset
-
-
+ The database schema is represented in the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Database-conceptual-design"
 
 \end_inset
 
- there's the class diagram.
+; the classes diagram can be seen in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Class-diagram"
+
+\end_inset
+
+.
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[auto,node distance=1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[entity] (node1) {
+\backslash
+textbf{musicinfo}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		[grow=up,sibling distance=2cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {path}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {title}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{id}}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[relationship] (rel1) [right = of node1] {
+\backslash
+textit{refers to}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[entity] (node2) [right = of rel1] {
+\backslash
+textbf{hashtable}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		[grow=down,sibling distance=2cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{id}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] (bot) {hash}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {time}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+path (rel1) edge node {1,
+\backslash
+(n
+\backslash
+)} (node1)
+\end_layout
+
+\begin_layout Plain Layout
+
+	edge node {1,1} (node2);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[entity] (node3) [below = of rel1] {
+\backslash
+textbf{
+\backslash
+textunderscore record}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		[grow=down,sibling distance=3cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{hash
+\backslash
+textunderscore r}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{start}}};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Database-conceptual-design"
+
+\end_inset
+
+Database conceptual design
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -7314,6 +7471,9 @@ Classes diagram
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -7322,183 +7482,6 @@ status open
 
 \backslash
 end{landscape}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}[auto,node distance=1.5cm]
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-node[entity] (node1) {
-\backslash
-textbf{musicinfo}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		[grow=up,sibling distance=3cm]
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {path}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {title}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {
-\backslash
-underline{id}}};
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-node[relationship] (rel1) [below = of node1] {
-\backslash
-textit{refers to}};
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-node[entity] (node2) [below = of rel1] {
-\backslash
-textbf{hashtable}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		[grow=down,sibling distance=3cm]
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {
-\backslash
-underline{id}}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] (bot) {hash}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {time}};
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-path (rel1) edge node {1,
-\backslash
-(n
-\backslash
-)} (node1)
-\end_layout
-
-\begin_layout Plain Layout
-
-	edge node {1,1} (node2);
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-node[entity] (node3) [below = of bot] {
-\backslash
-textbf{
-\backslash
-textunderscore record}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		[grow=down,sibling distance=3cm]
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {
-\backslash
-underline{hash
-\backslash
-textunderscore r}}}
-\end_layout
-
-\begin_layout Plain Layout
-
-		child {node[attribute] {
-\backslash
-underline{start}}};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Database-conceptual-design"
-
-\end_inset
-
-Database conceptual design
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -7523,12 +7506,12 @@ The
 \series bold
 AbstractReader
 \series default
- interface define the method signature 
+ interface defines the method signature 
 \family typewriter
 getData()
 \family default
  which will be used to get time domain data of a generic audio signal.
- All the classes which deal with the reading of audio signal has to implement
+ All the classes which deal with the reading of audio signals has to implement
  this interface.
 \end_layout
 
@@ -7569,7 +7552,7 @@ WavReader
 \shape italic
 AbstractReader
 \shape default
- interface and expose the 
+ interface and exposes the 
 \family typewriter
 getData()
 \family default
@@ -7698,7 +7681,7 @@ getWinFFT() : List<Complex[]>
 Complex
 \family default
  arrays.
- Each array is a window.
+ Each array is a frequency-domain window.
 \end_layout
 
 \begin_layout Subsection
@@ -7761,7 +7744,12 @@ freq : int
 status open
 
 \begin_layout Plain Layout
-Just a convenient way to store frequencies as integer
+Just a convenient way to store frequencies as integer numbers; the frequency
+ array is defined in the 
+\series bold
+Consts
+\series default
+ class
 \end_layout
 
 \end_inset
@@ -7953,7 +7941,7 @@ The class
 \series bold
 PeaksFinder
 \series default
- is used to find the three most powerful point in a spectrogram portion.
+ is used to find the three most powerful points in a frequency-domain window.
  It has two methods:
 \end_layout
 
@@ -8134,7 +8122,7 @@ Link
 \series bold
 Link
 \series default
- is a nested class which can be found in the 
+ is a nested class in the 
 \series bold
 Links 
 \series default
@@ -8215,9 +8203,9 @@ Links
 \family typewriter
 ArrayList<Link>
 \family default
- in order to define a specifig constructor.
+ in order to define a specific constructor.
  All the methods are inherited from the extended class, the constructor
- is defined as follow:
+ is defined as follows:
 \end_layout
 
 \begin_layout Itemize
@@ -8359,7 +8347,7 @@ getSondById(id : int) : Song
 \family typewriter
 musicinfo
 \family default
- table then populates and return a 
+ table then populates and returns a 
 \family typewriter
 Song
 \family default
@@ -8487,21 +8475,20 @@ Set
  and eventually removes the exceeding element
 \end_layout
 
+\begin_layout Standard
+The idea of using the 
+\series bold
+PriorityQueue
+\series default
+ Java class has been dismissed since it is not a fized-length structure.
+\end_layout
+
 \begin_layout Section
 Database queries
 \end_layout
 
 \begin_layout Standard
-In the following section the most important query will be analized: the
- one which find the most likely matching between the recording 
-\family typewriter
-Links
-\family default
- and the full song 
-\family typewriter
-Links
-\family default
-.
+In the following section the most important queries will be analized.
 \end_layout
 
 \begin_layout Subsection
@@ -8617,7 +8604,7 @@ The scoring query
 \end_layout
 
 \begin_layout Standard
-Take into account the algorithm specifications given at 
+Considering the algorithm specifications given at 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Scoring"
@@ -8703,13 +8690,13 @@ Condition to inner join: the two hashes has to be equal
 \end_layout
 
 \begin_layout Enumerate
-Group in a single record the records which share the same time difference
+Group in a single tuple the records which share the same time difference
  and the same song id
 \end_layout
 
 \begin_layout Enumerate
-Descending sort the records, so that the most likely maching is the top
- most record
+Descending sort the tuples, so that the most likely maching is the top most
+ record
 \end_layout
 
 \begin_layout Section
@@ -8717,7 +8704,7 @@ Server-side
 \end_layout
 
 \begin_layout Standard
-The server has to accomplish two works: insert the song links in the database
+The server has to accomplish two jobs: insert the song links in the database
  and offer a service to be used by the client to find a song name.
 \end_layout
 
@@ -8735,7 +8722,7 @@ Insert
  .wav
 \family default
  file are present.
- It lists all the available files, for each file computes the 
+ It lists all the available files, for each of them computes the 
 \family typewriter
 Links
 \family default
@@ -8751,13 +8738,13 @@ The
 \series bold
 Server
 \series default
- class offers an interface for the client-side software to find a song name.
- It uses the 
+ class implements a REST service for the song scoring.
+ 
 \shape italic
 Tomcat Embed Core
 \shape default
- library in order to provide an easy portable system, without using the
- stadard Tomcat infrastructure.
+ library is used to provide an easy portable system, without using the stadard
+ Tomcat infrastructure.
 \end_layout
 
 \begin_layout Standard
@@ -8848,7 +8835,7 @@ Links
  are computed.
  The 
 \shape italic
-okhttp3
+OkHttp3
 \shape default
  library is used to perform the request to the server.
  The 
@@ -9053,6 +9040,34 @@ https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf
 
 \end_layout
 
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.oracle.com/javase/tutorial/sound/capturing.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.tek-tips.com/viewthread.cfm?qid=1358705
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter*
 Open-source software
 \end_layout
@@ -9060,6 +9075,10 @@ Open-source software
 \begin_layout Standard
 A list of the open-source software used in the making of the algorithm or
  helped the writing of this document.
+\end_layout
+
+\begin_layout Itemize
+Debian
 \end_layout
 
 \begin_layout Itemize
@@ -9111,7 +9130,7 @@ MariaDB Connector library
 \end_layout
 
 \begin_layout Itemize
-Okhttp3 library
+OkHttp3 library
 \end_layout
 
 \begin_layout Itemize

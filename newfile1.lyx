@@ -1903,13 +1903,13 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
-\shape italic
 Suppose the highest frequency component for a given analog signal is 
 \begin_inset Formula $f_{max}$
 \end_inset
 
-, the sampling rate must be at least 
+, the sampling rate must be at least
+\shape italic
+ 
 \begin_inset Formula $2f_{max}$
 \end_inset
 
@@ -3292,7 +3292,14 @@ The interpretation is that the vector
 \begin_inset Formula $t$
 \end_inset
 
- multiplied by a complex exponential.
+ multiplied by a complex exponential (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Visual-representation-of"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -3338,6 +3345,163 @@ Once for
 \end_inset
 
  bin of frequencies
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[x={(1cm,0.5cm)},z={(0cm,0.5cm)},y={(1cm,-0.2cm)}]
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->,thick,black!70] (0,6.5,0) -- (6.2,6.5,0) node[right] {Frequency};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->,thick,black!70] (0,0,0) -- (0,6.5,0) node[below right] {Time};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[->,thick] (0,0,0) -- (0,0,2) node[above] {Magnitude};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+foreach 
+\backslash
+y in {0.5,1.5,...,5.5}{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [cyan!50, domain=0:2*pi,samples=200,smooth]
+\end_layout
+
+\begin_layout Plain Layout
+
+			plot (
+\backslash
+y,
+\backslash
+x, {sin(4*
+\backslash
+y*
+\backslash
+x r)/
+\backslash
+y });
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw[blue, ultra thick] (
+\backslash
+y,6.5,0) -- (
+\backslash
+y,6.5,1/
+\backslash
+y);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw [red, thick, domain=0:2*pi,samples=200,smooth]
+\end_layout
+
+\begin_layout Plain Layout
+
+	plot (0,
+\backslash
+x, {sin(4*0.5*
+\backslash
+x r)/0.5 + sin(4*1.5*
+\backslash
+x r)/1.5 + sin(4*2.5*
+\backslash
+x r)/2.5 + sin(4*3.5*
+\backslash
+x r)/3.5 + sin(4*4.5*
+\backslash
+x r)/4.5 + sin(4*5.5*
+\backslash
+x r)/5.5} );
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Visual-representation-of"
+
+\end_inset
+
+Visual representation of FT
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4272,6 +4436,89 @@ Shape the signal with a window function
 
 \begin_layout Section
 Time complexity and simplifications
+\end_layout
+
+\begin_layout Standard
+Looking again at the DFT formula it can be seen that N additions and N multiplic
+ations are nedded to compute just a bin.
+ This means that 
+\begin_inset Formula $2N^{2}$
+\end_inset
+
+ operations are required for each bin and this is a lot of work.
+\end_layout
+
+\begin_layout Standard
+Take a 3-minute song sampled at 44.1 kHz and compute its spectrogram with
+ a 4096-sized window.
+ The software need to compute 
+\begin_inset Formula $\frac{44100}{4096}\simeq10.8$
+\end_inset
+
+ DFT per second so
+\begin_inset Formula $\frac{44100}{4096}\cdot3\cdot60\simeq1938$
+\end_inset
+
+ DFT for the full song.
+ Each DFT needs 
+\begin_inset Formula $2\cdot4096^{2}$
+\end_inset
+
+ operations, so:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{44100}{\cancel{4096}}\cdot3\cdot60\cdot2\cdot4096^{\cancel{2}}\simeq6.5\cdot10^{10}\,\textrm{operations}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even worse if there are, to say, 100 songs to analyze.
+ Thankfully, there are faster implementation of the DFT called FFT (Fast
+ Fourier Transform) which require just 
+\begin_inset Formula $\frac{3}{2}Nlog(N)$
+\end_inset
+
+ operations.
+ But this is not enough: the time complexity of the whole algorithm can
+ be reduced with some other tricks.
+\end_layout
+
+\begin_layout Subsection
+Downsampling and window size
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Downsampling 
+\series default
+is the process of reducing the sampling rate of a signal.
+ Also the window size can be reduced accordingly, just take the highest
+ acceptale value (the value which gives an acceptable frequency resolution).
+ Take a standard song at 44.1 kHz and resample it at 8 kHz, use a window
+ size of just 512: in this way there are less sample to analyze and the
+ FFT si applied less frequently.
+\end_layout
+
+\begin_layout Standard
+The only difference is that the resampled song will only have frequencies
+ from 0 to 4 kHz (Nyquist-Shannon theorem), but the most important part
+ of a song is still present in this range of frequencies.
+\end_layout
+
+\begin_layout Chapter
+The actual algorithm
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body

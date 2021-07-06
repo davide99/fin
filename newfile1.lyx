@@ -8,6 +8,10 @@
 \begin_preamble
 \usepackage{pgfplots}
 \usetikzlibrary{patterns}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\setkeys{Gin}{width=\linewidth}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -1216,7 +1220,7 @@ reference "fig:Tipical-piano"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1721,7 +1725,226 @@ Tipical piano frequencies
 
 \end_layout
 
+\begin_layout Section
+Spectrogram
+\end_layout
+
 \begin_layout Standard
+A 
+\series bold
+spectrogram
+\series default
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Spectrogram-of-a"
+
+\end_inset
+
+) is a visual representation on how the frequencies of a signal vary with
+ time.
+ Usually a spectrogram is made up of the axis (making a 3D graph):
+\end_layout
+
+\begin_layout Itemize
+Time on the horizontal axis (x)
+\end_layout
+
+\begin_layout Itemize
+Frequencies on the vertical axis (y)
+\end_layout
+
+\begin_layout Itemize
+Amplitude of a given frequency at a given time (described by a color)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/schnitzelspec.jpg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Spectrogram-of-a"
+
+\end_inset
+
+Spectrogram of a 10 seconds recording
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Digitalization
+\end_layout
+
+\begin_layout Standard
+Nowadays the most common way to listen to music is via a digital file (such
+ as an MP3 file or a FLAC file and so on).
+ However a sound is an analog phenomena that needs to be converted in a
+ 
+\series bold
+digital
+\series default
+ represetation, in order to be easily recorded and stored.
+\end_layout
+
+\begin_layout Subsection
+Sampling
+\end_layout
+
+\begin_layout Standard
+Analog signals are continuous signals, that means that given two boundaries
+ in the signals there's always a point among them.
+ But in the digital world isn't affordable to store an infinite amount of
+ data, so the analog signal needs to be reduced in a 
+\series bold
+discrete-time signal
+\series default
+.
+ This process is colled 
+\series bold
+sampling
+\series default
+.
+ It is quite simple: an instantaneous value of the continuous signal is
+ taken every 
+\series bold
+T
+\series default
+ seconds.
+ T is called 
+\series bold
+sampling period
+\series default
+ and it should be short enough so that the digital song sounds like the
+ analog one.
+ The 
+\series bold
+sampling rate 
+\series default
+or 
+\series bold
+sampling frequency 
+\series default
+f
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+s
+\end_layout
+
+\end_inset
+
+ is the number of samples obtained in one second, given by the formula:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{s}=\frac{1}{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The standard sampling rate for digital music is usually 44100 Hz.
+ The reason behind that number lies in the Nyquist-Shannon theorem which
+ can be expressed as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\shape italic
+Suppose the highest frequency component for a given analog signal is 
+\begin_inset Formula $f_{max}$
+\end_inset
+
+, the sampling rate must be at least 
+\begin_inset Formula $2f_{max}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There's enough thery invoved in the theorem, but it states that given an
+ analog signal, it needs at least 2 points per cycle to be correctly identified.
+ So given that the frequencies that the human ears can listen sounds from
+ 20 Hz to 20 kHz, take the highest boundary and multiply it by 2, it will
+ give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sampling-example-of"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset ERT
 status open
 
@@ -1729,55 +1952,844 @@ status open
 
 
 \backslash
-begin{tikzpicture}[x={(1cm,0.5cm)},z={(0cm,0.5cm)},y={(1cm,-0.2cm)}] 
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \backslash
-draw[->,thick,black!70] (0,6.5,0) -- (6.2,6.5,0) node[right] {Frequency}; 
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
 \backslash
-draw[->,thick,black!70] (0,0,0) -- (0,6.5,0) node[below right] {Time}; 
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
 \backslash
-draw[->,thick] (0,0,0) -- (0,0,2) node[above] {Magnitude}; 
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = .1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin =  -2, ymax = 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid = major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = amplitude,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=bottom,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick={0,0.02,0.04,0.06,0.08,0.1}
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-foreach 
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			cos(deg(pi*60*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
-y in {0.5,1.5,...,5.5}{ 
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			mark=+,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt,
+\end_layout
+
+\begin_layout Plain Layout
+
+			samples=7.5
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			cos(deg(pi*60*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
 \backslash
-draw [cyan!50, domain=0:2*pi,samples=200,smooth]   plot (
-\backslash
-y,
-\backslash
-x, {sin(4*
-\backslash
-y*
-\backslash
-x r)/
-\backslash
-y }); 
-\backslash
-draw[blue, ultra thick] (
-\backslash
-y,6.5,0) -- (
-\backslash
-y,6.5,1/
-\backslash
-y); } 
-\backslash
-draw [red, thick, domain=0:2*pi,samples=200,smooth]  plot (0,
-\backslash
-x, {sin(4*0.5*
-\backslash
-x r)/0.5 + sin(4*1.5*
-\backslash
-x r)/1.5 + sin(4*2.5*
-\backslash
-x r)/2.5 + sin(4*3.5*
-\backslash
-x r)/3.5 + sin(4*4.5*
-\backslash
-x r)/4.5 + sin(4*5.5*
-\backslash
-x r)/5.5} ); 
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sampling-example-of"
+
+\end_inset
+
+Sampling example of a 30 Hz signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Quantization
+\end_layout
+
+\begin_layout Standard
+With the sampling process the signal isn't fully digital: the time resolution
+ became discrete but what about signal amplitude? The amplitude of a signal
+ represents its loudness, and in an analog world it is continuous, so there
+ must be a way to make it discrete.
+ This process is called 
+\series bold
+quantization
+\series default
+.
+ The quantization resolution is measured in bit, also known as 
+\series bold
+bit depth
+\series default
+ of a song.
+\end_layout
+
+\begin_layout Standard
+Let's take a depth of 3 bits, it means that the loudness of the song can
+ vary between 0 and 
+\begin_inset Formula $2^{3}-1$
+\end_inset
+
+ , so there are just 8 quantization level to represent the loudness of the
+ whole song (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:3-bit-quantization-example"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:360,
+\end_layout
+
+\begin_layout Plain Layout
+
+		hide y axis,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line*=middle,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick=
+\backslash
+empty,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=26
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [const plot mark mid, very thick, red] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [ycomb, mark=*, thick, mark size=1] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [densely dotted, samples=51] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:3-bit-quantization-example"
+
+\end_inset
+
+3-bit quantization example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The higher the bit depth, the better the amplitude is approximated.
+ The standardad quantization is coded on 
+\series bold
+16 bits
+\series default
+.
+ For instance take the same previous analog signal with a 16-bit quantization:
+ the amplitude can be assume 
+\begin_inset Formula $2^{16}$
+\end_inset
+
+ values, which will give a lot more precise accuracy (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:16-bit-quantization-example-1"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:360,
+\end_layout
+
+\begin_layout Plain Layout
+
+		hide y axis,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line*=middle,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick=
+\backslash
+empty,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=100
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [const plot mark mid, very thick, red] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [ycomb, mark=*, thick, mark size=1] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot [densely dotted, samples=51] {sin(2*x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:16-bit-quantization-example-1"
+
+\end_inset
+
+16-bit quantization example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Divide and conquer: the math way
+\end_layout
+
+\begin_layout Standard
+The previous sections should have given enough information to proceed to
+ the real problem: how to break down a complex audio signal into pure sine
+ waves with their own parameters.
+\end_layout
+
+\begin_layout Subsection
+The Taylor series
+\end_layout
+
+\begin_layout Standard
+A 
+\series bold
+Taylor series
+\series default
+ is a series expansion of a function about a point.
+ The Taylor series of a 
+\shape italic
+real function
+\shape default
+ 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ about a point 
+\begin_inset Formula $a$
+\end_inset
+
+ is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=\stackrel[n=0]{\infty}{\sum}\frac{f^{(n)}(a)}{n!}(x-a)^{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $a=0$
+\end_inset
+
+ then the expansion is known as a 
+\series bold
+Maclaurin series
+\series default
+, given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x)=\stackrel[n=0]{\infty}{\sum}\frac{f^{(n)}(0)}{n!}x{}^{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the upper limit of the summation is not an 
+\begin_inset Formula $\infty$
+\end_inset
+
+ but a generic 
+\begin_inset Formula $N$
+\end_inset
+
+ then a Taylor polynomial is beign calculated.
+\end_layout
+
+\begin_layout Standard
+The Taylor's theorem states that any function can be expressed as a Taylor
+ seriers as long as the function can be derivated 
+\begin_inset Formula $N$
+\end_inset
+
+ times in a 
+\series bold
+neighbourhood
+\series default
+ of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ But this is not always possible for a normal audio signal, for instance
+ let's take a look at the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Audio-signal-example"
+
+\end_inset
+
+, the function represented isn't continuous, so it cannot be approximated
+ by a Taylor polynomial.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=200,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:10,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = amplitude
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]
+\end_layout
+
+\begin_layout Plain Layout
+
+		{(0.3*gauss(0,0.2) + 0.5*rand) * sin(deg(x)) * 2};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Audio-signal-example"
+
+\end_inset
+
+Audio signal example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Fourier series
+\end_layout
+
+\begin_layout Standard
+Joseph Fourier, a french mathematician, discovered a way to approximate
+ a discontinuous function using a so called 
+\series bold
+trigonometric polynomial 
+\series default
+or even a 
+\series bold
+trigonometric series
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Def.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Trigonometric polynomial
 \end_layout
 
 \end_inset

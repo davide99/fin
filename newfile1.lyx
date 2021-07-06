@@ -5224,7 +5224,7 @@ Links structure
 Now, having a way to compute a frequency summary of an audio signal, the
  recognition process should be straight enough: each point of the recording
  should be compared with the points of the full song.
- Though it works well, this simple approch requires a lot of computation
+ Though it works well, this simple approach requires a lot of computation
  time.
 \end_layout
 
@@ -6518,7 +6518,7 @@ The top most tuple obtained contains the id of the most likely matching
 \end_layout
 
 \begin_layout Chapter
-Java implemetation
+Java implementation
 \end_layout
 
 \begin_layout Standard
@@ -7028,7 +7028,7 @@ operation{+getTime() : int}
 
 			
 \backslash
-operation{-getBand(intFreq : int) : int}
+operation{-getBand() : int}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7221,7 +7221,7 @@ unidirectionalAssociation{DB}{}{}{Links}
 
 	
 \backslash
-unidirectionalAssociation{Links}{}{}{Fingerprint}
+unidirectionalAssociation{DB}{}{}{Fingerprint}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7434,6 +7434,392 @@ Database conceptual design
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Java classes
+\end_layout
+
+\begin_layout Subsection
+io package
+\end_layout
+
+\begin_layout Subsubsection
+AbstractReader interface
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+AbstractReader
+\series default
+ interface define the method signature 
+\family typewriter
+getData()
+\family default
+ which will be used to get time domain data of a generic audio signal.
+ All the classes which deal with the reading of audio signal has to implement
+ this interface.
+\end_layout
+
+\begin_layout Subsubsection
+MicReader class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+MicReader
+\series default
+ class is responsible for recording an audio signal from the microphone.
+ It implements the interface 
+\shape italic
+AbstractReader
+\shape default
+ so that the method 
+\family typewriter
+getData()
+\family default
+ is defined.
+ The constructor takes an integer parameter which specify how many second
+ the recording will last.
+\end_layout
+
+\begin_layout Subsubsection
+WavReader class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+WavReader
+\series default
+ class can read a Wave file.
+ It implements the 
+\shape italic
+AbstractReader
+\shape default
+ interface and expose the 
+\family typewriter
+getData()
+\family default
+ method.
+ The constructor takes a string parameter as the path of the wav file.
+ Two more methods are defined:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getTitle()
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the title of the wav song
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getFileName()
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the path of the wav file
+\end_layout
+
+\begin_layout Subsection
+spectrogram package
+\end_layout
+
+\begin_layout Subsubsection
+Window class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Window
+\series default
+ class computes an Hann window of a given size and applies it to some data.
+ The class exposes two methods:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Window()
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ the constructor, which computes the Hann window
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+extractWindow(data : float[], pos : int)
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ given a time domain signal stored in the 
+\family typewriter
+data
+\family default
+ array, this method extracts a subarray of 
+\family typewriter
+data
+\family default
+ starting from 
+\family typewriter
+pos
+\family default
+ whose length is equal to the window size, then, after applying the window
+ function, the subarray is returned
+\end_layout
+
+\begin_layout Subsubsection
+Spectrogram class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Spectrogram 
+\series default
+class is responsible for taking the audio signal in the time domain and
+ compute the DFT.
+ The following methods are defined:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Spectrogram(data : float[])
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ the constructor, which takes as a parameter an audio signal in the time
+ domain then breaks it down into windows with an overlap of 50% and computes
+ for each window the DFT, stores the result in a list.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getWinFFT() : List<Complex[]>
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the spectrogram as a list of 
+\family typewriter
+Complex
+\family default
+ arrays.
+ Each array is a window.
+\end_layout
+
+\begin_layout Subsection
+model package
+\end_layout
+
+\begin_layout Subsubsection
+Song class
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Song
+\series default
+ is a simple model class, which stores basic information about a song.
+ The constructor takes as parameters the 
+\shape italic
+song id
+\shape default
+ and the 
+\shape italic
+song title
+\shape default
+.
+\end_layout
+
+\begin_layout Subsection
+fingerprint package
+\end_layout
+
+\begin_layout Subsubsection
+Peak class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Peak
+\series default
+ class represents a peak of the spectrogram, it implements the 
+\family typewriter
+Comparable
+\family default
+ Java interface.
+ It has the following attributes:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+freq : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ an index pointing to an element of the frequency array
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Just a convenient way to store frequencies as integer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+power : float
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ the power of the peak, given by the modulus of the corresponding complex
+ number in the spectrogram
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+time : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ the window in which the peak is
+\end_layout
+
+\begin_layout Standard
+The following methods are defined:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Peak(freq : int, power : float, time : int)
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ the constructor, creates the Peak object given the three parameters
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getFreq() : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the value of the attribute 
+\family typewriter
+freq
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getTime() : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the value of the attribute 
+\family typewriter
+time
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+getBand() : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ returns the band the peak is in
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+compareBand(p : Peak) : boolean
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ checks if the Peak 
+\family typewriter
+p
+\family default
+ and the current Peak are in the same band
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+compareTo(o : Peak) : int
+\family default
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ implementation of the method of the Comparable interface, sorts the Peaks
+ in ascending order by their frequencies
+\end_layout
+
+\begin_layout Subsubsection
+Fingerprint
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Fingerprint
+\series default
+ class is used to find the most important information in the spectrogram
+ 
 \end_layout
 
 \end_body

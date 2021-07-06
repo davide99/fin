@@ -43,12 +43,12 @@ public class Client {
 
 
     public static void main(String[] args) throws InterruptedException {
-        MicReader mic = new MicReader(5);
-        mic.start();
-        mic.join();
-        new Client(mic);
+        //MicReader mic = new MicReader(5);
+        //mic.start();
+        //mic.join();
+        //new Client(mic);
 
-        //WavReader wav = new WavReader("/home/davide/Scrivania/out.wav");
-        //new Client(wav.getData());
+        WavReader wav = new WavReader("/home/davide/Scrivania/out.wav");
+        new Client(wav);
     }
 }

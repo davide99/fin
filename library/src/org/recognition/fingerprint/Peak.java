@@ -21,10 +21,10 @@ public class Peak implements Comparable<Peak> {
         return time;
     }
 
-    private int getBand(int intFreq) {
+    private int getBand() {
         try {
             for (int i = 0; i < Consts.BANDS.length - 1; i++)
-                if (Consts.BANDS[i + 1] > intFreq)
+                if (Consts.BANDS[i + 1] > freq)
                     return i;
         } catch (ArrayIndexOutOfBoundsException ignored) {
         }
@@ -33,8 +33,8 @@ public class Peak implements Comparable<Peak> {
     }
 
     boolean compareBand(Peak p) {
-        int b1 = getBand(freq);
-        int b2 = getBand(p.getFreq());
+        int b1 = this.getBand();
+        int b2 = p.getBand();
 
         return (b1 == b2) && (b1 != -1);
     }

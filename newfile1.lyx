@@ -4896,9 +4896,6 @@ status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-pgfplotsset{compat=1.10}
 \end_layout
 
 \begin_layout Plain Layout

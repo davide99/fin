@@ -12,6 +12,7 @@
 \usepackage{lscape}
 \usetikzlibrary{patterns}
 \usetikzlibrary{positioning,fit}
+\usetikzlibrary{er}
 \usepackage{pgf-umlcd}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
@@ -6524,7 +6525,21 @@ Java implemetation
 In the next sections the Java implementation of the algorithm will be discussed.
  Some of the most well-known part of the implementation will not be covered
  here, since they are standard pieces of code.
- Here it is the class diagram of the implementation:
+ In the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Class-diagram"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Database-conceptual-design"
+
+\end_inset
+
+ there's the class diagram.
 \begin_inset ERT
 status open
 
@@ -7248,7 +7263,13 @@ end{tikzpicture}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Class-diagram"
 
+\end_inset
+
+Class diagram
 \end_layout
 
 \end_inset
@@ -7267,6 +7288,147 @@ status open
 
 \backslash
 end{landscape}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[auto,node distance=1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[entity] (node1) {
+\backslash
+textbf{musicinfo}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		[grow=up,sibling distance=3cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {path}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {title}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{id}}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[relationship] (rel1) [below = of node1] {
+\backslash
+textit{refers to}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+node[entity] (node2) [below = of rel1] {
+\backslash
+textbf{hashtable}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		[grow=down,sibling distance=3cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {
+\backslash
+underline{id}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {hash}}
+\end_layout
+
+\begin_layout Plain Layout
+
+		child {node[attribute] {time}};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+path (rel1) edge node {1,
+\backslash
+(n
+\backslash
+)} (node1)
+\end_layout
+
+\begin_layout Plain Layout
+
+	edge node {1,1} (node2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Database-conceptual-design"
+
+\end_inset
+
+Database conceptual design
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset

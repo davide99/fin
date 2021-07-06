@@ -7,6 +7,8 @@
 \textclass book
 \begin_preamble
 \usepackage{pgfplots}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
 \usetikzlibrary{patterns}
 \usetikzlibrary{positioning,fit}
 \pgfmathdeclarefunction{gauss}{2}{%
@@ -4777,6 +4779,340 @@ In the following sections the algorithm is being described.
  Take in account that some obvious parts (such as the usage of the microphone
  interface or the track file reading routines) will not be deeply described,
  since that they are simple and well-known.
+\end_layout
+
+\begin_layout Section
+Spectrogram creation
+\end_layout
+
+\begin_layout Standard
+The first step to analyze the audio is to create the spectrogram.
+ The process is described in the following lines:
+\end_layout
+
+\begin_layout Itemize
+A 512-sized Hann window function is computed
+\end_layout
+
+\begin_layout Itemize
+The audio signal is divided in 512-sized window with a 50% overlap (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Audio-windowing-with-overlap"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Each audio window is multipied by the Hann precomputed window
+\end_layout
+
+\begin_layout Itemize
+The DFT is computed for each audio window and added into a list
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=200,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:10,
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 10,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin = -1, ymax = 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = amplitude
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (0,0) rectangle (10,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (10,0) rectangle (20,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (20,0) rectangle (30,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (30,0) rectangle (40,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (40,0) rectangle (50,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (50,0) rectangle (60,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (60,0) rectangle (70,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (70,0) rectangle (80,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (80,0) rectangle (90,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [red, very thick] (90,0) rectangle (100,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (5,0) rectangle (15,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (15,0) rectangle (25,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (25,0) rectangle (35,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (35,0) rectangle (45,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (45,0) rectangle (55,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (55,0) rectangle (65,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (65,0) rectangle (75,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (75,0) rectangle (85,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+draw [green, fill=green, fill opacity=0.2] (85,0) rectangle (95,200);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]
+\end_layout
+
+\begin_layout Plain Layout
+
+		{(0.3*gauss(0,0.2) + 0.5*rand) * sin(deg(x)) * 2};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Audio-windowing-with-overlap"
+
+\end_inset
+
+Audio windowing with overlap
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

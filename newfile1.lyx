@@ -1276,9 +1276,9 @@ Sampling
 
 \begin_layout Standard
 Analog signals are continuous signals, which means that given two boundaries
- in the signals there is always a point among them.
+ in the signals there is always a point between them.
  But in the digital world is not so affordable to store an infinite amount
- of data, so the analog signal needs to be reduced in a 
+ of data, so the analog signal needs to be reduced to a 
 \series bold
 discrete-time signal
 \series default
@@ -1394,9 +1394,9 @@ There is enough theory involved in the theorem, but it states that given
  an analog signal, it needs at least 2 points per cycle to be correctly
  identified.
  So, since the human ears can listen to signals whose frequency is between
- 20 Hz and 20 kHz, taking the highest boundary and multiply it by 2, it
- will give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
- 
+ 20 Hz and 20 kHz, taking the highest boundary and multiplying it by 2,
+ it will give 40 kHz, which is close enough to the standardized 44.1 kHz
+ (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Sampling-example-of"
@@ -2296,7 +2296,7 @@ A trigonometric polynomial of order
 \end_layout
 
 \begin_layout Standard
-The real constant 
+The real constants 
 \begin_inset Formula $a_{k}$
 \end_inset
 
@@ -2648,7 +2648,7 @@ If the function
 \begin_inset Formula $f(x)$
 \end_inset
 
- is even, Fourier series is a cosines series
+ is even, Fourier series is a cosine series
 \begin_inset Foot
 status open
 
@@ -2698,7 +2698,7 @@ a_{n}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\cos nx\,dx=\sideset{\frac{
 \begin_inset Formula $f(x)$
 \end_inset
 
- is odd, Fourier series is a sines series
+ is odd, Fourier series is a sine series
 \begin_inset Formula 
 \[
 \stackrel[n=1]{+\infty}{\sum}b_{n}\sin nx
@@ -3152,7 +3152,7 @@ Window function
 
 \begin_layout Standard
 Now the problem is partially solved: the DFT can be used to obtain the frequenci
-es amplitude for (just saying) the first 
+es amplitude for (just to say) the first 
 \begin_inset Formula $\frac{1}{10}$
 \end_inset
 
@@ -3387,7 +3387,7 @@ spectral leakage
 \begin_layout Standard
 Spectral leakage cannot be avoided but it can be controlled and reduced
  by choosing the right window function: there are many different window
- function besides the rectangular one.
+ functions besides the rectangular one.
  Just to name a few: triangular, Blackman, Hamming, Hann and many others.
 \end_layout
 
@@ -4246,6 +4246,10 @@ General overview scheme
 
 \end_inset
 
+
+\begin_inset VSpace defskip
+\end_inset
+
 On the 
 \series bold
 server side
@@ -4258,7 +4262,7 @@ The algorithm computes the fingerprints of the input tracks
 \end_layout
 
 \begin_layout Itemize
-Store the fingerprints in the database
+The computed fingerprints are stored in the database
 \end_layout
 
 \begin_layout Standard
@@ -4273,24 +4277,19 @@ client side
 \end_layout
 
 \begin_layout Itemize
-Record the current playing music for a couple of seconds
+The current playing music is recorded for a couple of seconds
 \end_layout
 
 \begin_layout Itemize
-Compute the fingerprints of the recording
+The algorithm computes the fingerprints of the recording
 \end_layout
 
 \begin_layout Itemize
-Send them to the server
+The fingerprints are sent to the server
 \end_layout
 
 \begin_layout Itemize
-Output the server response
-\end_layout
-
-\begin_layout Standard
-When the server receives the recording fingerprints sent by the client it
- checks if they are in the database and sends a response to the client.
+The server analyzes the fingerprints and possibly outputs a song title
 \end_layout
 
 \begin_layout Standard
@@ -6593,7 +6592,7 @@ Scoring
 \begin_layout Standard
 It is assumed that the full song links are in the database.
  Now a client, after recording a small piece of song, computes on its own
- the links of the recording and send them to the server.
+ the links of the recording and sends them to the server.
  The server has to:
 \end_layout
 
@@ -7630,7 +7629,7 @@ AbstractReader
 getData()
 \family default
  is defined.
- The constructor takes an integer parameter which specifies how many second
+ The constructor takes an integer parameter which specifies how many seconds
  the recording will last.
 \end_layout
 
@@ -7707,7 +7706,7 @@ Window()
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, which computes the Hann window
+ the constructor which computes the Hann window
 \end_layout
 
 \begin_layout Itemize
@@ -7745,7 +7744,7 @@ The
 Spectrogram 
 \series default
 class is responsible for taking the audio signal in the time domain and
- compute the DFT.
+ computes the DFT.
  The following methods are defined:
 \end_layout
 
@@ -7758,7 +7757,7 @@ Spectrogram(data : float[])
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, which takes as a parameter an audio signal in the time
+ the constructor which takes as a parameter an audio signal in the time
  domain then breaks it down into windows with an overlap of 50% and computes
  for each window the DFT, stores the result in a list.
 \end_layout
@@ -7793,7 +7792,7 @@ Song class
 \series bold
 Song
 \series default
- is a simple model class, which stores basic information about a song.
+ is a simple model class which stores basic information about a song.
  The constructor takes as parameters the 
 \shape italic
 song id
@@ -7862,7 +7861,7 @@ power : float
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the power of the peak, given by the modulus of the corresponding complex
+ the power of the peak given by the modulus of the corresponding complex
  number in the spectrogram
 \end_layout
 
@@ -7891,7 +7890,7 @@ Peak(freq : int, power : float, time : int)
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, creates the Peak object given the three parameters
+ the constructor creates the Peak object given the three parameters
 \end_layout
 
 \begin_layout Itemize
@@ -7959,8 +7958,8 @@ compareTo(o : Peak) : int
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- implementation of the method of the Comparable interface, sorts the Peaks
- in ascending order by their frequencies
+ implementation of the method of the Comparable interface, it sorts the
+ Peaks in ascending order by their frequencies
 \end_layout
 
 \begin_layout Subsubsection
@@ -7990,7 +7989,7 @@ Fingerprint (reader : AbstractReader)
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, uses the 
+ the constructor uses the 
 \family typewriter
 Spectrogram
 \family default
@@ -8050,14 +8049,14 @@ PeaksFinder (data : Complex[], band : int, time : int)
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, takes the complex data to analyze, the band and the window
+ the constructor takes the complex data to analyze, the band and the window
  they belong to.
  A 3-element 
 \family typewriter
 FixedSizeTreeSet
 \family default
  is initialized, which will hold the three most powerful peaks.
- The algorithm loop through the 
+ The algorithm loops through the 
 \family typewriter
 data
 \family default
@@ -8222,8 +8221,8 @@ Link
 \series bold
 Links 
 \series default
-class.
- It stores information about the a link and has the following methods:
+class which contains information about a link.
+ It has the following methods:
 \end_layout
 
 \begin_layout Itemize
@@ -8235,7 +8234,7 @@ Link(address : Peak, peak : Peak)
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, which takes the address 
+ the constructor which takes the address 
 \family typewriter
 Peak
 \family default
@@ -8300,8 +8299,8 @@ Links
 ArrayList<Link>
 \family default
  in order to define a specific constructor.
- All the methods are inherited from the extended class, the constructor
- is defined as follows:
+ All the methods are inherited from the extended class except the constructor
+ which is defined as follows:
 \end_layout
 
 \begin_layout Itemize
@@ -8352,7 +8351,7 @@ DB()
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, initializes the communication with the database
+ the constructor initializes the communication with the database
 \end_layout
 
 \begin_layout Itemize
@@ -8364,12 +8363,12 @@ insert(file : WavReader) : void
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- takes as a parameter the song file, then:
+ takes a song file as a parameter, then:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Stores the song information (such as the 
+The song information (such as the 
 \shape italic
 title
 \shape default
@@ -8377,7 +8376,7 @@ title
 \shape italic
 path
 \shape default
-) in the 
+) are stored in the 
 \family typewriter
 musicinfo
 \family default
@@ -8385,11 +8384,11 @@ musicinfo
 \end_layout
 
 \begin_layout Itemize
-Finds the most powerful 
+The most powerful 
 \family typewriter
 Peak
 \family default
-s using the 
+s are found using the 
 \family typewriter
 Fingerprint
 \family default
@@ -8397,17 +8396,23 @@ Fingerprint
 \end_layout
 
 \begin_layout Itemize
-Computes the 
+Given the 
 \family typewriter
-Links
-\end_layout
-
-\begin_layout Itemize
-Stores the 
+Peak
+\family default
+s the 
 \family typewriter
 Links
 \family default
- in the 
+ are computed
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+Links
+\family default
+ are stored in the 
 \family typewriter
 hashtable
 \family default
@@ -8424,7 +8429,7 @@ searchId(list : List<Link>) : int
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- takes in input a Link list, then follows the step defined in 
+ takes a Link list in input, then follows the step defined in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Scoring"
@@ -8455,7 +8460,7 @@ utils package
 \end_layout
 
 \begin_layout Standard
-The class in the 
+The classes in the 
 \family typewriter
 utils
 \family default
@@ -8531,7 +8536,7 @@ FixedSizeTreeSet(size : int, ascSorted : boolean)
 \begin_inset Formula $\Rightarrow$
 \end_inset
 
- the constructor, 
+ the constructor 
 \family typewriter
 size
 \family default
@@ -8822,7 +8827,7 @@ Insert
 \family typewriter
 Links
 \family default
- and store them in the database.
+ and stores them in the database.
 \end_layout
 
 \begin_layout Subsection
@@ -8908,11 +8913,11 @@ Client-side
 
 \begin_layout Standard
 On the client-side the software has to record a song for a couple of seconds,
- computes the 
+ to compute the 
 \family typewriter
 Links
 \family default
-, send them to the server and wait for a response.
+, to send them to the server and to wait for a response.
 \end_layout
 
 \begin_layout Subsection

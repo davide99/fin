@@ -4878,5 +4878,10 @@ In the actual algorithm
 
 \end_layout
 
+\begin_layout Standard
+For each cell the algorithm finds and stores the three most powerful frequencies
+ in a list.
+\end_layout
+
 \end_body
 \end_document

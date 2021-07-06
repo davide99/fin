@@ -185,6 +185,21 @@ Davide Pisanò
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align center
+5
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+AI
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset VSpace vfill
 \end_inset
@@ -310,7 +325,7 @@ Frequency
 \begin_inset Formula $\Longrightarrow$
 \end_inset
 
- the number of cycles per unit time, measured in Hertz
+ the number of cycles per unit of time, measured in Hertz
 \end_layout
 
 \begin_layout Itemize
@@ -637,7 +652,7 @@ Frequency 60Hz and amplitude 3
 \end_layout
 
 \begin_layout Standard
-Those three functions can be plotted separately as shown in the figure 
+These three functions can be plotted separately as shown in the figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Three-different-sine"
@@ -1085,7 +1100,7 @@ reference "fig:Spectrogram-of-a"
 
 ) is a visual representation of how the frequencies of a signal vary with
  time.
- Usually, a spectrogram is made up of the axis (making a 3D graph):
+ Usually, a spectrogram is made up of three axis (making a 3D graph):
 \end_layout
 
 \begin_layout Itemize
@@ -1148,8 +1163,8 @@ Digitalization
 \end_layout
 
 \begin_layout Standard
-Nowadays the most common way to listen to music is via a digital file (such
- as an MP3 file or a FLAC file and so on).
+Nowadays the most common way to listen to music is using a digital file
+ (such as an MP3 file or a FLAC file and so on).
  However, a sound is an analog phenomenon that needs to be converted into
  a 
 \series bold
@@ -1163,10 +1178,10 @@ Sampling
 \end_layout
 
 \begin_layout Standard
-Analog signals are continuous signals, that means that given two boundaries
- in the signals there's always a point among them.
- But in the digital world isn't affordable to store an infinite amount of
- data, so the analog signal needs to be reduced in a 
+Analog signals are continuous signals, which means that given two boundaries
+ in the signals there is always a point among them.
+ But in the digital world is not so affordable to store an infinite amount
+ of data, so the analog signal needs to be reduced in a 
 \series bold
 discrete-time signal
 \series default
@@ -8490,6 +8505,114 @@ Links
 \end_layout
 
 \begin_layout Subsection
+The _record table creation
+\end_layout
+
+\begin_layout Standard
+The _record table is where the recording 
+\family typewriter
+Links
+\family default
+ are stored, it is created with the following lines:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{language=SQL,numberfirstline,firstnumber=1,numbers=left, stepnumber=1}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{lstlisting}[basicstyle=
+\backslash
+ttfamily]
+\end_layout
+
+\begin_layout Plain Layout
+
+CREATE TEMPORARY TABLE musiclibrary._record (
+\end_layout
+
+\begin_layout Plain Layout
+
+	hash_r VARCHAR(40) NOT NULL,
+\end_layout
+
+\begin_layout Plain Layout
+
+	start INTEGER NOT NULL,
+\end_layout
+
+\begin_layout Plain Layout
+
+	PRIMARY KEY (hash_r, start)
+\end_layout
+
+\begin_layout Plain Layout
+
+) ENGINE=MEMORY;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Create a temporary table, it will be dropped as soon as the session is closed
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+hash_r
+\family default
+ is the hash of the 
+\family typewriter
+Link
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+start
+\family default
+ is the window of the address 
+\family typewriter
+Peak
+\end_layout
+
+\begin_layout Enumerate
+The primary key is composite, the two fields of the table are specified
+\end_layout
+
+\begin_layout Enumerate
+Tell MariaDB to store the table in RAM
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The queries will be a lot faster
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 The scoring query
 \end_layout
 
@@ -8587,6 +8710,412 @@ Group in a single record the records which share the same time difference
 \begin_layout Enumerate
 Descending sort the records, so that the most likely maching is the top
  most record
+\end_layout
+
+\begin_layout Section
+Server-side
+\end_layout
+
+\begin_layout Standard
+The server has to accomplish two works: insert the song links in the database
+ and offer a service to be used by the client to find a song name.
+\end_layout
+
+\begin_layout Subsection
+Insert class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Insert
+\series default
+ class takes in input a path where
+\family typewriter
+ .wav
+\family default
+ file are present.
+ It lists all the available files, for each file computes the 
+\family typewriter
+Links
+\family default
+ and store them in the database.
+\end_layout
+
+\begin_layout Subsection
+Server class
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+Server
+\series default
+ class offers an interface for the client-side software to find a song name.
+ It uses the 
+\shape italic
+Tomcat Embed Core
+\shape default
+ library in order to provide an easy portable system, without using the
+ stadard Tomcat infrastructure.
+\end_layout
+
+\begin_layout Standard
+The Tomcat server is started at port 8080 and an 
+\family typewriter
+HttpServlet
+\family default
+ is mapped to the 
+\family typewriter
+/search
+\family default
+ URL.
+ The servlet waits for a 
+\shape italic
+POST
+\shape default
+ request, where a 
+\family typewriter
+links
+\family default
+ parameter is sent (it contains a 
+\shape italic
+JSON
+\shape default
+-encoded 
+\family typewriter
+List<Link>
+\family default
+).
+ The content of the 
+\family typewriter
+links
+\family default
+ parameter is converted into a Java 
+\family typewriter
+List<Link>
+\family default
+ using the 
+\shape italic
+Google GSON
+\shape default
+ library.
+ The 
+\family typewriter
+List
+\family default
+ is then passed to the 
+\family typewriter
+DB
+\family default
+ class which performs the search, the response is returned as a 
+\shape italic
+JSON
+\shape default
+-encoded 
+\family typewriter
+Song
+\family default
+ object to the client.
+\end_layout
+
+\begin_layout Section
+Client-side
+\end_layout
+
+\begin_layout Standard
+On the client-side the software has to record a song for a couple of seconds,
+ computes the 
+\family typewriter
+Links
+\family default
+, send them to the server and wait for a response.
+\end_layout
+
+\begin_layout Subsection
+Client class
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+MicReader
+\family default
+ class is used to record a current playing song, then the 
+\family typewriter
+Links
+\family default
+ are computed.
+ The 
+\shape italic
+okhttp3
+\shape default
+ library is used to perform the request to the server.
+ The 
+\family typewriter
+List<Link>
+\family default
+ is encoded as a 
+\shape italic
+JSON
+\shape default
+ object and sent to the URL where the Tomcat servlet is mapped to.
+ The client waits for the response: it receives a 
+\shape italic
+JSON-
+\shape default
+encoded 
+\family typewriter
+Song
+\family default
+ object, which is converted to a normal Java 
+\family typewriter
+Song
+\family default
+ object using the 
+\shape italic
+Google GSON
+\shape default
+ library.
+ All the needed information about the song can be found in the 
+\family typewriter
+Song
+\family default
+ object.
+\end_layout
+
+\begin_layout Chapter*
+Webliography and bibliography
+\end_layout
+
+\begin_layout Itemize
+Le serie di Fourier - Matematica.verde - Modulo Epsilon - Le serie, le serie
+ di Fourier e la trasformata di Laplace
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://helpx.adobe.com/audition/using/digitizing-audio.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://zone.ni.com/reference/en-XX/help/370524T-01/siggenhelp/fund_nyquist_and_sha
+nnon_theorems/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://mathworld.wolfram.com/TaylorSeries.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://mathworld.wolfram.com/RectangleFunction.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://en.wikipedia.org/wiki/Window_function
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://tex.stackexchange.com/questions/127375/replicate-the-fourier-transform-tim
+e-frequency-domains-correspondence-illustrati
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://stackoverflow.com/questions/7560860/are-tables-created-with-create-tempor
+ary-table-in-memory-or-on-disk?utm_medium=organic&utm_source=google_rich_qa&utm_
+campaign=google_rich_qa
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-exam
+ples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://dsp.stackexchange.com/questions/19776/is-it-necessary-to-apply-some-window
+-method-to-obtain-the-fft-java
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://stackoverflow.com/questions/6740545/understanding-fft-output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.ee.columbia.edu/~dpwe/papers/Wang03-shazam.pdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Open-source software
+\end_layout
+
+\begin_layout Standard
+A list of the open-source software used in the making of the algorithm or
+ helped the writing of this document.
+\end_layout
+
+\begin_layout Itemize
+LyX
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+LaTeX
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tikz library
+\end_layout
+
+\begin_layout Itemize
+Python
+\end_layout
+
+\begin_layout Itemize
+Matplotlib
+\end_layout
+
+\begin_layout Itemize
+IntelliJ Idea IDE
+\end_layout
+
+\begin_layout Itemize
+Apache Commons libraries
+\end_layout
+
+\begin_layout Itemize
+Google GSON library
+\end_layout
+
+\begin_layout Itemize
+MariaDB Connector library
+\end_layout
+
+\begin_layout Itemize
+Okhttp3 library
+\end_layout
+
+\begin_layout Itemize
+Tomcat Embed Core library
 \end_layout
 
 \end_body

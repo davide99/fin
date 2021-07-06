@@ -3195,5 +3195,278 @@ If the function
 
 \end_layout
 
+\begin_layout Section
+Discrete Fourier Transform
+\end_layout
+
+\begin_layout Standard
+The DFT (Discrete Fourier Transform) applies to discrete signals and gives
+ a discrete spectrum.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X(n)=\stackrel[t=0]{N-1}{\sum}x(t)e^{-i(2\pi tn/N)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $N$
+\end_inset
+
+
+\series default
+ is the size of the 
+\series bold
+window
+\series default
+: the number of samples that composed the signal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X(n)$
+\end_inset
+
+ is the 
+\series bold
+n
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+
+\series bold
+th
+\end_layout
+
+\end_inset
+
+ bin of frequencies
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x(t)$
+\end_inset
+
+ is the 
+\series bold
+t
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+
+\series bold
+th
+\end_layout
+
+\end_inset
+
+ sample of the audio signal
+\end_layout
+
+\begin_layout Standard
+The interpretation is that the vector 
+\begin_inset Formula $x$
+\end_inset
+
+ represents the signal level at various points in time, the vector 
+\begin_inset Formula $X$
+\end_inset
+
+ represents the signal level at various frequencies.
+ What the formula states is that the signal level at frequency 
+\begin_inset Formula $n$
+\end_inset
+
+ in equal to the sum of the signal level at each time 
+\begin_inset Formula $t$
+\end_inset
+
+ multiplied by a complex exponential.
+\end_layout
+
+\begin_layout Standard
+For example, take an audio signal with 512-sample window, this formula must
+ be applied 512 times:
+\end_layout
+
+\begin_layout Itemize
+Once for 
+\begin_inset Formula $n=0$
+\end_inset
+
+ to compute the 
+\begin_inset Formula $0^{th}$
+\end_inset
+
+ bin of frequencies
+\end_layout
+
+\begin_layout Itemize
+Once for 
+\begin_inset Formula $n=1$
+\end_inset
+
+ to compute the 
+\begin_inset Formula $1^{st}$
+\end_inset
+
+ bin of frequencies
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout Itemize
+Once for 
+\begin_inset Formula $n=511$
+\end_inset
+
+ to compute the 
+\begin_inset Formula $511^{th}$
+\end_inset
+
+ bin of frequencies
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A bin of frequencies is a group of frequencies among two boundaries.
+ The reason why the DFT can compute bins of frequencies and not exact frequencie
+s is quite simple: the DFT gives a 
+\series bold
+discrete spectrum
+\series default
+.
+ A bin of frequencies is the smallest unit of frequencies the DFT can compute
+ and the size of the bin is called 
+\series bold
+spectral resolution 
+\series default
+or 
+\series bold
+frequency resolution
+\series default
+ which is given by the formula:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{S}=\frac{\frac{F_{S}}{2}}{\frac{N}{2}}=\frac{F_{S}}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $B_{S}$
+\end_inset
+
+ is the 
+\series bold
+bin size
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F_{S}$
+\end_inset
+
+ is the 
+\series bold
+sampling rate
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N$
+\end_inset
+
+ is the 
+\series bold
+size of the window
+\end_layout
+
+\begin_layout Standard
+For instance, take a sampling rate of 8000 Hz and a windows size of 512,
+ this will give a bin size of 
+\series bold
+15.6 Hz
+\series default
+, so:
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Formula $0^{th}$
+\end_inset
+
+ bin contains the frequencies between 0 Hz and 15.6 Hz
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Formula $1^{st}$
+\end_inset
+
+ bin contains the frequencies between 15.6 Hz and 31.2 Hz
+\end_layout
+
+\begin_layout Itemize
+And so on
+\end_layout
+
+\begin_layout Standard
+A particularity for an audio signal is that 
+\series bold
+only the half of the bins computed by the DFT are needed
+\series default
+.
+ An audio signal is a real input, and when the FT is applied to a real signal
+ the output of the FT is symetric, and that's why in the forumla the N size
+ is divided by 2.
+ Also the sampling rate is divided by 2 for the Nyquist-Shannon theorem.
+\end_layout
+
+\begin_layout Section
+Window function
+\end_layout
+
+\begin_layout Standard
+Now the problem is half solved: the DFT can be used to obtain the frequencies
+ amplitude for (just saying) the first 
+\begin_inset Formula $\frac{1}{10}$
+\end_inset
+
+ second part of the song, for the second, the third and so on.
+\end_layout
+
+\begin_layout Standard
+The problem is that in this way a rectuangular function is implicitly apllied:
+ a function that equals 1 for the song portion under analisys and 0 elsewhere.
+\end_layout
+
 \end_body
 \end_document

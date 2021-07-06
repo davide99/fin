@@ -252,10 +252,6 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
 \align center
 \begin_inset ERT
 status open
@@ -1109,7 +1105,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename img/schnitzelspec.jpg
+	filename img/spec.svg
 
 \end_inset
 
@@ -1126,7 +1122,7 @@ name "fig:Spectrogram-of-a"
 
 \end_inset
 
-Spectrogram of a 10 seconds recording
+Spectrogram of a real song
 \end_layout
 
 \end_inset

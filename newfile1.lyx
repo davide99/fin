@@ -4883,6 +4883,249 @@ For each cell the algorithm finds and stores the three most powerful frequencies
  in a list.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pgfplotsset{compat=1.10}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+	grid=major,
+\end_layout
+
+\begin_layout Plain Layout
+
+	width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+	height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+	xlabel = Time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+	ylabel = Frequency,
+\end_layout
+
+\begin_layout Plain Layout
+
+	xmin = 0, xmax = 130,
+\end_layout
+
+\begin_layout Plain Layout
+
+	ymin = 0, ymax = 4000,
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[pattern=north west lines, pattern color=blue, line width=1pt] (0,00)
+ rectangle (40,1000);     	
+\backslash
+draw[pattern=north east lines, pattern color=blue, line width=1pt] (40,00)
+ rectangle (80,1000);     	
+\backslash
+draw[pattern=north west lines, pattern color=blue, line width=1pt] (80,00)
+ rectangle (120,1000);
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[pattern=north east lines, pattern color=green, line width=1pt] (0,1000)
+ rectangle (40,2000);     	
+\backslash
+draw[pattern=north west lines, pattern color=green, line width=1pt] (40,1000)
+ rectangle (80,2000);     	
+\backslash
+draw[pattern=north east lines, pattern color=green, line width=1pt] (80,1000)
+ rectangle (120,2000); %
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[pattern=north west lines, pattern color=red, line width=1pt] (0,2000)
+ rectangle (40,3000);     	
+\backslash
+draw[pattern=north east lines, pattern color=red, line width=1pt] (40,2000)
+ rectangle (80,3000);     	
+\backslash
+draw[pattern=north west lines, pattern color=red, line width=1pt] (80,2000)
+ rectangle (120,3000);
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+draw[pattern=north east lines, pattern color=orange, line width=1pt] (0,3000)
+ rectangle (40,4000);     	
+\backslash
+draw[pattern=north west lines, pattern color=orange, line width=1pt] (40,3000)
+ rectangle (80,4000);     	
+\backslash
+draw[pattern=north east lines, pattern color=orange, line width=1pt] (80,3000)
+ rectangle (120,4000);     
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+pgfplotsinvokeforeach{1,...,12}{   
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[scatter,clip=true, clip marker paths=true,
+\end_layout
+
+\begin_layout Plain Layout
+
+		    only marks, mark=*, samples=100,point meta=int(#1)
+\end_layout
+
+\begin_layout Plain Layout
+
+	    ]({20+40*
+\backslash
+X+20*rand},{-500+1000*
+\backslash
+Y+500*rand});
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw[decoration={brace,mirror,raise=15pt},decorate]   (0,0) -- node[below=16pt]
+ {
+\backslash
+textbf{C}} (3.2,0); 
+\backslash
+draw[decoration={brace,mirror},decorate]   (10.8,0) -- node[xshift=10pt]
+ {
+\backslash
+rotatebox{-90}{
+\backslash
+textbf{band}}} (10.8,1.4);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Spectrum-division-1"
+
+\end_inset
+
+Spectrum division
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Links structure
 \end_layout

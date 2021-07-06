@@ -188,6 +188,8 @@ Davide Pisanò
 \begin_layout Standard
 \noindent
 \align center
+
+\size large
 5
 \begin_inset script superscript
 
@@ -198,6 +200,22 @@ a
 \end_inset
 
 AI
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size large
+Indirizzo Informatica e Telecomunicazioni
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+A.S.
+ 2017/2018
 \end_layout
 
 \begin_layout Standard
@@ -225,17 +243,95 @@ Casarano (LE)
 
 \begin_layout Standard
 \align center
+\begin_inset Newpage newpage
+\end_inset
 
-\size large
-Indirizzo Informatica e Telecomunicazioni
+
 \end_layout
 
 \begin_layout Standard
 \align center
+\begin_inset ERT
+status open
 
-\size large
-A.S.
- 2017/2018
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+topskip0pt 
+\backslash
+vspace*{
+\backslash
+fill}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{flushright}
+\backslash
+textit{
+\end_layout
+
+\begin_layout Plain Layout
+
+with gratitude
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+to the teachers
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+who supported and encouraged me
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+in the making of this project}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+fill}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1297,7 +1393,7 @@ Suppose the highest frequency component for a given analog signal is
 There is enough theory involved in the theorem, but it states that given
  an analog signal, it needs at least 2 points per cycle to be correctly
  identified.
- So, since the human ears can listen to singnals whose frequency is between
+ So, since the human ears can listen to signals whose frequency is between
  20 Hz and 20 kHz, taking the highest boundary and multiply it by 2, it
  will give 40 kHz, which is close enough to the standardized 44.1 kHz (figure
  
@@ -1713,7 +1809,7 @@ The higher the bit depth, the better the amplitude is approximated.
 16 bits
 \series default
 .
- For instance, in the same previous analog signal with a 16-bit quantization
+ For instance, in the same previous analog signal with a 16-bit quantization,
  the amplitude can assume 
 \begin_inset Formula $2^{16}$
 \end_inset
@@ -3043,7 +3139,7 @@ only the half of the bins computed by the DFT are needed
 \end_layout
 
 \begin_layout Standard
-One of the fastest implementation of the DFT is the 
+One of the fastest implementations of the DFT is the 
 \series bold
 FFT
 \series default
@@ -3276,7 +3372,7 @@ By windowing the audio signal, the audio signal is multiplied by a window
 spectral leakage
 \series default
 .
- Spectral leakage is the appearance of new frequencies that doesn't exist
+ Spectral leakage is the appearance of new frequencies that does not exist
  inside the audio signal.
  The power of the real frequencies is leaked to others frequencies.
 \end_layout
@@ -3289,9 +3385,9 @@ spectral leakage
 \end_layout
 
 \begin_layout Standard
-Spectral leakage can't be avoided but it can be controlled and reduced by
- choosing the right window function: there are many different window function
- besides the rectangular one.
+Spectral leakage cannot be avoided but it can be controlled and reduced
+ by choosing the right window function: there are many different window
+ function besides the rectangular one.
  Just to name a few: triangular, Blackman, Hamming, Hann and many others.
 \end_layout
 
@@ -6496,7 +6592,7 @@ Scoring
 
 \begin_layout Standard
 It is assumed that the full song links are in the database.
- Now a client after recording a small piece of song, computes on its own
+ Now a client, after recording a small piece of song, computes on its own
  the links of the recording and send them to the server.
  The server has to:
 \end_layout
@@ -6506,7 +6602,7 @@ Put the recording links in a temporary in-memory table
 \end_layout
 
 \begin_layout Itemize
-Relate the full songs links table with the recording table it they share
+Relate the full songs links table with the recording table if they share
  the same hash
 \end_layout
 
@@ -6530,7 +6626,7 @@ Descending sort the tuples according to the count field
 \end_layout
 
 \begin_layout Itemize
-The top most tuple obtained contains the id of the most likely matching
+The topmost tuple obtained contains the id of the most likely matching
 \end_layout
 
 \begin_layout Chapter
@@ -7511,7 +7607,7 @@ AbstractReader
 getData()
 \family default
  which will be used to get time domain data of a generic audio signal.
- All the classes which deal with the reading of audio signals has to implement
+ All the classes which deal with the reading of audio signals have to implement
  this interface.
 \end_layout
 
@@ -7534,7 +7630,7 @@ AbstractReader
 getData()
 \family default
  is defined.
- The constructor takes an integer parameter which specify how many second
+ The constructor takes an integer parameter which specifies how many second
  the recording will last.
 \end_layout
 
@@ -7598,7 +7694,7 @@ The
 \series bold
 Window
 \series default
- class computes an Hann window of a given size and applies it to some data.
+ class computes a Hann window of a given size and applies it to some data.
  The class exposes two methods:
 \end_layout
 

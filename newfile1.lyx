@@ -3455,8 +3455,8 @@ Window function
 \end_layout
 
 \begin_layout Standard
-Now the problem is half solved: the DFT can be used to obtain the frequencies
- amplitude for (just saying) the first 
+Now the problem is partially solved: the DFT can be used to obtain the frequenci
+es amplitude for (just saying) the first 
 \begin_inset Formula $\frac{1}{10}$
 \end_inset
 
@@ -3464,8 +3464,814 @@ Now the problem is half solved: the DFT can be used to obtain the frequencies
 \end_layout
 
 \begin_layout Standard
-The problem is that in this way a rectuangular function is implicitly apllied:
- a function that equals 1 for the song portion under analisys and 0 elsewhere.
+The problem is that in this way a rectangular function is implicitly applied:
+ a function that equals 1 for the song portion under analisys and 0 elsewhere
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rectangular-window-function"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:.1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = .1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin =  -2, ymax = 2,
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid = major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = time $(s)$,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = amplitude,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=bottom,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick={0,0.02,0.04,0.06,0.08,0.1}
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[color=red,mark=x] coordinates { (0,1) (0.02,1) };
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[color=red,mark=x] coordinates { (0.02,0) (0.1,0) };
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=green,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			sin(deg(pi*120*x))/2 - sin(deg(pi*60*x))/3 - sin(deg(pi*20*x))/6
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rectangular-window-function"
+
+\end_inset
+
+Rectangular window function example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By windowing the audio signal, the audio signal is multipled by a window
+ function which depends on the piece of audio signal udner analisys.
+ The usage of a window function produces 
+\series bold
+spectral leakage
+\series default
+.
+ Spectral leakage is the apparition of new frequencies that doesn't exist
+ inside the audio signal.
+ The power of the real frequencies is leaked to others frequencies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spectral leakage can't be avoided but it can be controlled or even reduced
+ by choosing the right window function: there are many different window
+ function besides the rectangular one.
+ Just to name a few: triangular, Blackman, Hamming, Hann and many others.
+\end_layout
+
+\begin_layout Standard
+When analysing unknown data or high noise ones probably the best choise
+ is the Hann window function, defined by the following formula:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w(n)=\frac{1}{2}\left(1-\cos\left(\frac{2\pi n}{N-1}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N$
+\end_inset
+
+ is the size of the window
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w(n)$
+\end_inset
+
+ is the value of the window function at 
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The aim of this window function is to decrease the amplitude of the discontinuit
+ies at the boundaries of a given piece of audio signal (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Shape-the-signal"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight/2,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin = -1.5, ymax = 1.5,
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid = major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel=Audio signal,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=center,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ytick=
+\backslash
+empty,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick=
+\backslash
+empty
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			sin(deg(pi*20*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight/2,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin =  -1.5, ymax = 1.5,
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid = major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = Window function,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=center,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ytick=
+\backslash
+empty,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick=
+\backslash
+empty
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			sin(deg(pi*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{axis}[
+\end_layout
+
+\begin_layout Plain Layout
+
+		width=
+\backslash
+textwidth,
+\end_layout
+
+\begin_layout Plain Layout
+
+		height=
+\backslash
+axisdefaultheight/2,
+\end_layout
+
+\begin_layout Plain Layout
+
+		domain=0:1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		samples=500,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xmin = 0, xmax = 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ymin =  -1.5, ymax = 1.5,
+\end_layout
+
+\begin_layout Plain Layout
+
+		grid = major,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xlabel = Time,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ylabel = Window function,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis x line=center,
+\end_layout
+
+\begin_layout Plain Layout
+
+		axis y line=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+		ytick=
+\backslash
+empty,
+\end_layout
+
+\begin_layout Plain Layout
+
+		xtick=
+\backslash
+empty
+\end_layout
+
+\begin_layout Plain Layout
+
+	]
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			sin(deg(pi*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=red,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			-sin(deg(pi*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+addplot[
+\end_layout
+
+\begin_layout Plain Layout
+
+			color=blue,
+\end_layout
+
+\begin_layout Plain Layout
+
+			line width=1pt
+\end_layout
+
+\begin_layout Plain Layout
+
+		]{
+\end_layout
+
+\begin_layout Plain Layout
+
+			sin(deg(pi*20*x)) * sin(deg(pi*x))
+\end_layout
+
+\begin_layout Plain Layout
+
+		};
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Shape-the-signal"
+
+\end_inset
+
+Shape the signal with a window function
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Time complexity and simplifications
 \end_layout
 
 \end_body

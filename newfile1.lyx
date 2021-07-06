@@ -4883,5 +4883,145 @@ For each cell the algorithm finds and stores the three most powerful frequencies
  in a list.
 \end_layout
 
+\begin_layout Section
+Links structure
+\end_layout
+
+\begin_layout Standard
+Now, having a way to compute a frequency summary of an audio signal, the
+ recognition process should be straight enough: each point of the recording
+ should be compared with the points of the full song.
+ Though it works well, this simple approch requires a lot of computation
+ time.
+\end_layout
+
+\begin_layout Standard
+Instead of comparing each point one by one, the idea is to look for multiple
+ points at the same time.
+ This group of points is called 
+\series bold
+links
+\series default
+, and it represents a relationship between a point and some others.
+ In order to be sure that both the record and the full song will generate
+ the same links, some rules must be defined:
+\end_layout
+
+\begin_layout Itemize
+Spectrogram points must be ordered in ascending order according to their
+ frequencies
+\end_layout
+
+\begin_layout Itemize
+Spectrogram points must be ordered in ascending order according to the window
+ they belong to
+\end_layout
+
+\begin_layout Standard
+So, given a point 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and an initially empty group of points A, the algorithm will put in A all
+ the other points whose window difference compared to the point 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is between 1 and 3 and are in the same band as 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ In symbols:
+\begin_inset Formula 
+\[
+\beta\in A\Leftrightarrow(1\leq\beta.window-\alpha.window<3)\wedge(\beta.band=\alpha.band)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For each point belonging to A a 
+\series bold
+link 
+\series default
+is computed and added to a list.
+ The link structure is the following:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $link.hash=SHA1((\alpha.window-\beta.window)+(\alpha.frequency-b.frequency)+\alpha.frequency)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Formula $link.window=\alpha.window$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The produced links are quite reproducible, even in the presence of noise
+ and codec compression.
+ Another advantage is that in this way all the times are relative.
+\end_layout
+
+\begin_layout Standard
+On the server side each link is stored in a database along with the song
+ information.
+\end_layout
+
+\begin_layout Section
+Scoring
+\end_layout
+
+\begin_layout Standard
+It is assumed that the full song links are in the database.
+ Now a client after recording a small piece of song, computes on its own
+ the links of the recording and send them to the server.
+ The server has to:
+\end_layout
+
+\begin_layout Itemize
+Put the recording links in a temporary in-memory table
+\end_layout
+
+\begin_layout Itemize
+Inner join the full songs links table with the recording table when they
+ share the same hash
+\end_layout
+
+\begin_layout Itemize
+Count the tuples grouped by the time difference between the recording links
+ and the full song links
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Links of the same song, share the same time difference
+\end_layout
+
+\end_inset
+
+ and the song id
+\end_layout
+
+\begin_layout Itemize
+Descending sort the tuples according to the count field
+\end_layout
+
+\begin_layout Itemize
+The top most tuple obtained contains the id of the most likely matching
+\end_layout
+
 \end_body
 \end_document

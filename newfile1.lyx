@@ -2754,6 +2754,10 @@ trigonometric series
 .
 \end_layout
 
+\begin_layout Subsubsection
+Trigonometric polynomials
+\end_layout
+
 \begin_layout Standard
 \begin_inset VSpace defskip
 \end_inset
@@ -2762,6 +2766,7 @@ trigonometric series
 \end_layout
 
 \begin_layout Standard
+\noindent
 
 \shape italic
 Def.
@@ -2791,6 +2796,399 @@ status open
 \series bold
 Trigonometric polynomial
 \end_layout
+
+\begin_layout Plain Layout
+A trigonometric polynomial of order 
+\begin_inset Formula $n$
+\end_inset
+
+ is a function like:
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $P_{n}(x)=\frac{a_{0}}{2}+\stackrel[k=1]{n}{\sum}(a_{k}\cos kx+b_{k}\sin kx)$
+\end_inset
+
+, with 
+\begin_inset Formula $k\in\mathbb{N}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The real constant 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{k}$
+\end_inset
+
+ are independent from 
+\begin_inset Formula $x$
+\end_inset
+
+ and they are called 
+\series bold
+polynomial coefficients
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+The term 
+\begin_inset Formula $a_{k}\cos kx+b_{k}\sin kx$
+\end_inset
+
+ is a sinusoidal function whose period is 
+\begin_inset Formula $T_{k}=\frac{2\pi}{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+So a trigonometric polynomial is a linear combination of sinusoidal functions,
+ whose common period is 
+\begin_inset Formula $T=2\pi$
+\end_inset
+
+, multiple of all the main periods.
+ It is a periodic function, but not necessarily sinusoidal.
+\end_layout
+
+\begin_layout Subsubsection
+Trigonometric series
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\shape italic
+Def.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Trigonometric series
+\end_layout
+
+\begin_layout Plain Layout
+A trigonometric series is a series of functions like:
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Formula $\frac{a_{0}}{2}+\stackrel[k=1]{+\infty}{\sum}(a_{k}\cos kx+b_{k}\sin kx)$
+\end_inset
+
+, with 
+\begin_inset Formula $k\in\mathbb{N}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{k}$
+\end_inset
+
+ are the 
+\series bold
+coefficients 
+\series default
+of the series.
+\end_layout
+
+\begin_layout Subsubsection
+Fourier coefficients
+\end_layout
+
+\begin_layout Standard
+Take the generic function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $T=2\pi$
+\end_inset
+
+, integrable in 
+\begin_inset Formula $\left[-\pi,\pi\right]$
+\end_inset
+
+.
+ Then surely 
+\begin_inset Formula $f(x)\cos nx$
+\end_inset
+
+ and 
+\begin_inset Formula $f(x)\sin nx$
+\end_inset
+
+ with 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ will be integrable in 
+\begin_inset Formula $\left[-\pi,\pi\right]$
+\end_inset
+
+.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\shape italic
+Def.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Fourier coefficients of
+\series default
+ 
+\begin_inset Formula $f(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+a_{0}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\,dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+a_{n}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\cos nx\,dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+b_{n}=\sideset{\frac{1}{\pi}}{_{-\pi}^{\pi}}\int f(x)\sin nx\,dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+with 
+\begin_inset Formula $n\in\mathbb{N^{\star}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Fourier series
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\shape italic
+Def.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Fourier series
+\end_layout
+
+\begin_layout Plain Layout
+Given a function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ with 
+\begin_inset Formula $T=2\pi$
+\end_inset
+
+ and integrable in 
+\begin_inset Formula $\left[-\pi,\pi\right]$
+\end_inset
+
+, the following trigonometric series is called 
+\series bold
+Fourier series
+\series default
+:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\frac{a_{0}}{2}+\stackrel[n=1]{+\infty}{\sum}(a_{n}\cos nx+b_{n}\sin nx)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+whose coefficients are the Fourier coefficients.
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ to expanded is even or odd the Fourier series can be simplified as follows:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is even, Fourier series is a cosines series
+\begin_inset Formula 
+\[
+\frac{a_{0}}{2}+\stackrel[n=1]{+\infty}{\sum}a_{n}\cos nx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is odd, Fourier series is a sines series
+\begin_inset Formula 
+\[
+\stackrel[n=1]{+\infty}{\sum}b_{n}\sin nx
+\]
 
 \end_inset
 
